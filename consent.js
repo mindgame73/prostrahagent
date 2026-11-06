@@ -124,6 +124,8 @@
       el.hidden = false;
       el.addEventListener("click", function (e) { e.preventDefault(); open(); });
     });
+    // Ссылка на текст согласия — тоже только при подключённых счётчиках
+    Array.prototype.forEach.call(document.querySelectorAll(".js-consent-doc"), function (el) { el.hidden = !NEEDED; });
     if (!NEEDED) return;
     if (allowed()) startAnalytics();
     else if (!state) open();
