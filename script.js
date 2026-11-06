@@ -57,11 +57,7 @@
     else if (a.classList.contains("js-manager-always")) { a.href = TG; }
   });
 
-  /* ---------- Реферальная ссылка Инссмарт и реквизиты ---------- */
-  if (CFG.inssmartRef) {
-    $$(".js-ref").forEach(function (a) { a.href = CFG.inssmartRef; a.hidden = false; });
-    $$(".js-ref-wrap").forEach(function (w) { w.hidden = false; });
-  }
+  /* ---------- Реквизиты ---------- */
   var owner = CFG.owner || {};
   if (owner.name || owner.inn) {
     $$(".js-owner").forEach(function (el) {
