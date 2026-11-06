@@ -25,8 +25,11 @@
   ["clickid", "subid", "yclid", "gclid", "vkclid", "fbclid"].forEach(function (k) {
     if (!fresh.click_id && params.get(k)) fresh.click_id = params.get(k);
   });
-  var track = Object.keys(fresh).length ? fresh : (store("ps_track") || {});
-  if (Object.keys(fresh).length) store("ps_track", fresh);
+  var CONSENT = window.PSConsent || { allowed: function () { return false; }, onGrant: function () {} };
+  // Метки запоминаем между визитами только с согласия на cookie (consent.js)
+  var track = Object.keys(fresh).length ? fresh : (CONSENT.allowed() && store("ps_track")) || {};
+  function saveTrack() { if (Object.keys(fresh).length) store("ps_track", fresh); }
+  if (CONSENT.allowed()) saveTrack(); else CONSENT.onGrant(saveTrack);
 
   /* ---------- Куда ведём в Telegram ----------
      1) бот с start-параметром (передаёт click_id/метки в бота)
@@ -67,31 +70,16 @@
     });
   }
 
-  /* ---------- Аналитика ---------- */
-  if (CFG.metrikaId) {
-    (function (m, e, t, r, i, k, a) {
-      m[i] = m[i] || function () { (m[i].a = m[i].a || []).push(arguments); };
-      m[i].l = 1 * new Date();
-      k = e.createElement(t); a = e.getElementsByTagName(t)[0];
-      k.async = 1; k.src = r; a.parentNode.insertBefore(k, a);
-    })(window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
-    window.ym(+CFG.metrikaId, "init", { clickmap: true, trackLinks: true, accurateTrackBounce: true, webvisor: true });
-  }
-  if (CFG.vkPixelId) {
-    var _tmr = window._tmr || (window._tmr = []);
-    _tmr.push({ id: String(CFG.vkPixelId), type: "pageView", start: Date.now() });
-    var s = document.createElement("script");
-    s.async = true; s.src = "https://top-fwz1.mail.ru/js/code.js";
-    document.head.appendChild(s);
-  }
+  /* ---------- Аналитика: счётчики грузит consent.js после согласия ---------- */
   function goal(name) {
+    if (!CONSENT.allowed()) return;
     try {
       if (CFG.metrikaId && window.ym) window.ym(+CFG.metrikaId, "reachGoal", name, track);
       if (CFG.vkPixelId && window._tmr) window._tmr.push({ type: "reachGoal", id: String(CFG.vkPixelId), goal: name });
     } catch (e) { /* noop */ }
   }
   function postback() {
-    if (!CFG.postbackUrl || !track.click_id) return;
+    if (!CFG.postbackUrl || !track.click_id || !CONSENT.allowed()) return;
     try { if (sessionStorage.getItem("ps_pb")) return; sessionStorage.setItem("ps_pb", "1"); } catch (e) { /* noop */ }
     var url = CFG.postbackUrl.replace("{click_id}", encodeURIComponent(track.click_id));
     if (navigator.sendBeacon) navigator.sendBeacon(url); else new Image().src = url;
