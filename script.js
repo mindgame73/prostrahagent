@@ -42,7 +42,7 @@
     var inv = CFG.inviteLinks || {};
     var byKey = inv[track.utm_campaign] || inv[track.utm_source] || inv["default"];
     if (byKey) return byKey;
-    return "https://t.me/" + (clean(CFG.telegram) || "prostrahovanie");
+    return "https://t.me/" + (clean(CFG.telegram) || "prostrahagent");
   }
   var TG = tgUrl();
   var MANAGER = clean(CFG.manager);
