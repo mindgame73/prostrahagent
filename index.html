@@ -1,0 +1,401 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ПроСтрахование — как стать страховым агентом на Инссмарт</title>
+  <meta name="description" content="Станьте страховым агентом на платформе Инссмарт: бесплатно, онлайн, без опыта. Это не найм с окладом — вы получаете вознаграждение за оформленные полисы. Помогаем на старте в Telegram.">
+  <meta name="theme-color" content="#0B1736">
+  <meta property="og:title" content="ПроСтрахование — старт в страховании на Инссмарт">
+  <meta property="og:description" content="Бесплатно, онлайн, без опыта. Вознаграждение за каждый оформленный полис.">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- ============ HEADER ============ -->
+<header class="header" id="top">
+  <div class="container header__inner">
+    <a href="#top" class="logo" aria-label="ПроСтрахование — на главную">
+      <svg class="logo__mark" viewBox="0 0 40 40" aria-hidden="true">
+        <rect width="40" height="40" rx="12" fill="#2F5BFF"/>
+        <path d="M20 8.5 29.5 12v7.6c0 6.1-4 10.6-9.5 12.4-5.5-1.8-9.5-6.3-9.5-12.4V12L20 8.5Z" fill="#fff"/>
+        <path d="m15.6 20.2 3.2 3.2 6-6.2" fill="none" stroke="#2F5BFF" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <span class="logo__text"><b>Про</b>Страхование</span>
+    </a>
+
+    <nav class="nav" aria-label="Основная навигация">
+      <a href="#why">Как это работает</a>
+      <a href="#calc">Доход</a>
+      <a href="#steps">Как начать</a>
+      <a href="#faq">Вопросы</a>
+    </nav>
+
+    <div class="header__actions">
+      <a class="btn btn--tg btn--sm js-tg" href="https://t.me/prostrahovanie" data-goal="tg_header">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21.5 4.3 18.4 19c-.2 1-.8 1.3-1.7.8l-4.6-3.4-2.2 2.1c-.3.3-.5.5-1 .5l.3-4.7 8.6-7.8c.4-.3-.1-.5-.6-.2L6.6 13 2 11.6c-1-.3-1-1 .2-1.5L20.1 3.2c.8-.3 1.6.2 1.4 1.1Z" fill="currentColor"/></svg>
+        <span>Наш Telegram</span>
+      </a>
+    </div>
+  </div>
+</header>
+
+<main>
+
+<!-- ============ HERO ============ -->
+<section class="hero">
+  <div class="hero__glow" aria-hidden="true"></div>
+  <div class="container hero__inner">
+    <div class="hero__text">
+      <span class="tag"><span class="tag__dot"></span>Старт агентом на платформе Инссмарт</span>
+      <h1 class="hero__title">
+        Страхование — это <span class="hl">доход</span>, а&nbsp;не&nbsp;скучная бумажная работа
+      </h1>
+      <p class="hero__lead">
+        Оформляйте страховые полисы онлайн через платформу Инссмарт и получайте вознаграждение за каждый. Бесплатно и без опыта. Это не работа по найму с окладом, а&nbsp;ваше дело: сколько полисов — столько дохода. Поможем разобраться на старте в нашем Telegram-канале.
+      </p>
+      <div class="hero__cta">
+        <a class="btn btn--accent btn--lg js-tg" href="https://t.me/prostrahovanie" data-goal="tg_hero">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21.5 4.3 18.4 19c-.2 1-.8 1.3-1.7.8l-4.6-3.4-2.2 2.1c-.3.3-.5.5-1 .5l.3-4.7 8.6-7.8c.4-.3-.1-.5-.6-.2L6.6 13 2 11.6c-1-.3-1-1 .2-1.5L20.1 3.2c.8-.3 1.6.2 1.4 1.1Z" fill="currentColor"/></svg>
+          Узнать подробнее в Telegram
+        </a>
+        <a class="btn btn--ghost btn--lg" href="#calc">Посчитать доход</a>
+      </div>
+
+      <ul class="stats">
+        <li><b>0 ₽</b><span>платформа бесплатная</span></li>
+        <li><b>100%</b><span>онлайн, из любого города</span></li>
+        <li><b>9 видов</b><span>страхования в одном кабинете</span></li>
+      </ul>
+    </div>
+
+    <!-- Dashboard mockup (иллюстрация) -->
+    <div class="hero__visual" aria-hidden="true">
+      <div class="dash">
+        <div class="dash__head">
+          <div class="dash__avatar">АК</div>
+          <div>
+            <div class="dash__name">Кабинет агента</div>
+            <div class="dash__sub">пример · баланс вознаграждений</div>
+          </div>
+          <span class="dash__live">online</span>
+        </div>
+
+        <div class="dash__balance">
+          <span>Начислено за месяц</span>
+          <b><span class="js-count" data-to="56000">56 000</span> ₽</b>
+          <em>3 оформленных полиса</em>
+        </div>
+
+        <div class="dash__chart">
+          <i style="--h:38%"></i><i style="--h:52%"></i><i style="--h:44%"></i><i style="--h:63%"></i>
+          <i style="--h:58%"></i><i style="--h:74%"></i><i style="--h:69%"></i><i style="--h:88%" class="is-now"></i>
+        </div>
+
+        <ul class="dash__ops">
+          <li><span class="op op--car">О</span><div><b>ОСАГО</b><small>клиент из Казани</small></div><strong>+6 000 ₽</strong></li>
+          <li><span class="op op--home">И</span><div><b>Страхование ипотеки</b><small>клиент из Перми</small></div><strong>+30 000 ₽</strong></li>
+          <li><span class="op op--life">К</span><div><b>КАСКО</b><small>клиент из Омска</small></div><strong>+20 000 ₽</strong></li>
+        </ul>
+      </div>
+
+      <div class="float float--a">
+        <span class="float__icon">✓</span>
+        <div><b>Полис оформлен</b><small>онлайн, за 10 минут</small></div>
+      </div>
+      <div class="float float--b">
+        <b>Вывод на карту</b><small>или на расчётный счёт</small>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PRODUCTS MARQUEE ============ -->
+<section class="products" aria-label="Продукты">
+  <p class="products__label">Что можно оформлять через Инссмарт</p>
+  <div class="marquee">
+    <div class="marquee__track">
+      <span>ОСАГО</span><span>КАСКО</span><span>Мини-КАСКО</span><span>Страхование ипотеки</span><span>Имущество</span><span>Несчастный случай</span><span>Путешествия (ВЗР)</span><span>ОСГОП</span><span>Антиклещ</span>
+      <span aria-hidden="true">ОСАГО</span><span aria-hidden="true">КАСКО</span><span aria-hidden="true">Мини-КАСКО</span><span aria-hidden="true">Страхование ипотеки</span><span aria-hidden="true">Имущество</span><span aria-hidden="true">Несчастный случай</span><span aria-hidden="true">Путешествия (ВЗР)</span><span aria-hidden="true">ОСГОП</span><span aria-hidden="true">Антиклещ</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ WHY ============ -->
+<section class="section" id="why">
+  <div class="container">
+    <div class="section__head">
+      <span class="eyebrow">Как это работает</span>
+      <h2 class="h2">Честно о том, что вас ждёт</h2>
+      <p class="section__lead">Вы регистрируетесь агентом на платформе Инссмарт, оформляете полисы для клиентов и получаете вознаграждение. Мы — партнёр платформы и помогаем на старте.</p>
+    </div>
+
+    <div class="grid-6">
+      <article class="card reveal">
+        <div class="card__icon"><svg viewBox="0 0 24 24"><rect x="4" y="3.5" width="16" height="17" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M8 8.5h8M8 12h8M8 15.5h5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></div>
+        <h3>Не найм, а своё дело</h3>
+        <p>Работа по договору-оферте с Инссмарт, а не по трудовому договору. Оклада нет: доход зависит от того, сколько полисов вы оформите.</p>
+      </article>
+      <article class="card reveal">
+        <div class="card__icon"><svg viewBox="0 0 24 24"><path d="M12 3.5 19.5 6.5v5.6c0 4.4-3.1 7.6-7.5 8.9-4.4-1.3-7.5-4.5-7.5-8.9V6.5L12 3.5Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="m8.8 12 2.2 2.2 4.2-4.4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <h3>Бесплатно</h3>
+        <p>Платформа ничего не стоит: ни регистрация, ни обучение. Инссмарт платит вам за оформленные полисы.</p>
+      </article>
+      <article class="card reveal">
+        <div class="card__icon"><svg viewBox="0 0 24 24"><path d="M3 8.5 12 4l9 4.5-9 4.5-9-4.5Zm3 2v4.7c0 1.6 2.7 3.3 6 3.3s6-1.7 6-3.3v-4.7" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg></div>
+        <h3>Обучение в кабинете</h3>
+        <p>Гайды, обучающие материалы и работа с возражениями — в личном кабинете. Подходит новичкам без опыта.</p>
+      </article>
+      <article class="card reveal">
+        <div class="card__icon"><svg viewBox="0 0 24 24"><rect x="3.5" y="3.5" width="7" height="7" rx="1.8" fill="none" stroke="currentColor" stroke-width="1.8"/><rect x="13.5" y="3.5" width="7" height="7" rx="1.8" fill="none" stroke="currentColor" stroke-width="1.8"/><rect x="3.5" y="13.5" width="7" height="7" rx="1.8" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M17 13.5v7M13.5 17h7" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></div>
+        <h3>Все продукты в одном месте</h3>
+        <p>ОСАГО, КАСКО, ипотека, имущество и другие — расчёт сразу по многим страховым компаниям.</p>
+      </article>
+      <article class="card reveal">
+        <div class="card__icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M12 7.5V12l3 2" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></div>
+        <h3>Онлайн и в своём темпе</h3>
+        <p>Вся работа — через личный кабинет. Можно совмещать с основной работой, учёбой или декретом.</p>
+      </article>
+      <article class="card card--accent reveal">
+        <div class="card__icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.6" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M5 20c.8-3.6 3.6-5.5 7-5.5s6.2 1.9 7 5.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></div>
+        <h3>Поддержка на старте</h3>
+        <p>В нашем Telegram-канале объясняем, как зарегистрироваться, с чего начать и как оформить первый полис.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CALCULATOR ============ -->
+<section class="section section--dark" id="calc">
+  <div class="container calc">
+    <div class="calc__intro">
+      <span class="eyebrow eyebrow--light">Калькулятор дохода</span>
+      <h2 class="h2">Сколько можно заработать на полисах</h2>
+      <p class="section__lead">Укажите, сколько полисов в месяц вы готовы оформлять. Вознаграждение за полис взято ориентировочно, по калькулятору на сайте Инссмарт. Точные ставки зависят от страховой компании, региона и суммы полиса — они видны в личном кабинете.</p>
+      <ul class="rates">
+        <li><span>ОСАГО</span><b>~<span data-rate="osago">6 000</span> ₽</b></li>
+        <li><span>КАСКО</span><b>~<span data-rate="kasko">20 000</span> ₽</b></li>
+        <li><span>Ипотека</span><b>~<span data-rate="ipoteka">30 000</span> ₽</b></li>
+      </ul>
+    </div>
+
+    <div class="calc__panel">
+      <label class="range">
+        <span class="range__top"><span>Полисов ОСАГО в месяц</span><output id="osagoVal">3</output></span>
+        <input type="range" id="osago" min="0" max="30" step="1" value="3">
+      </label>
+      <label class="range">
+        <span class="range__top"><span>Полисов КАСКО в месяц</span><output id="kaskoVal">0</output></span>
+        <input type="range" id="kasko" min="0" max="10" step="1" value="0">
+      </label>
+      <label class="range">
+        <span class="range__top"><span>Полисов ипотеки в месяц</span><output id="ipotekaVal">1</output></span>
+        <input type="range" id="ipoteka" min="0" max="10" step="1" value="1">
+      </label>
+
+      <div class="calc__result">
+        <span>Ориентировочно в месяц</span>
+        <b id="resultVal">48 000 ₽</b>
+        <small>Это оценка, а не гарантия дохода</small>
+      </div>
+      <a class="btn btn--accent btn--block js-tg" href="https://t.me/prostrahovanie" data-goal="tg_calc">Как начать — расскажем в Telegram</a>
+      <p class="calc__note">Расчёт: количество полисов × ориентировочное вознаграждение. Новичкам на первые продажи обычно нужно время.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ STEPS ============ -->
+<section class="section" id="steps">
+  <div class="container">
+    <div class="section__head">
+      <span class="eyebrow">Как начать</span>
+      <h2 class="h2">Четыре шага до первого вознаграждения</h2>
+    </div>
+
+    <ol class="steps">
+      <li class="step reveal">
+        <span class="step__num">01</span>
+        <h3>Telegram</h3>
+        <p>Подписываетесь на наш канал: там пошаговая инструкция и ответы на вопросы.</p>
+        <span class="step__time">1 минута</span>
+      </li>
+      <li class="step reveal">
+        <span class="step__num">02</span>
+        <h3>Регистрация</h3>
+        <p>Регистрируетесь агентом на Инссмарт по нашей ссылке — бесплатно.</p>
+        <span class="step__time">5 минут</span>
+      </li>
+      <li class="step reveal">
+        <span class="step__num">03</span>
+        <h3>Обучение</h3>
+        <p>Изучаете платформу и обучающие материалы в личном кабинете.</p>
+        <span class="step__time">в своём темпе</span>
+      </li>
+      <li class="step step--final reveal">
+        <span class="step__num">04</span>
+        <h3>Первые полисы</h3>
+        <p>Оформляете полисы для клиентов и выводите вознаграждение на карту.</p>
+        <span class="step__time">ваш доход</span>
+      </li>
+    </ol>
+
+    <div class="steps__cta js-ref-wrap" hidden>
+      <a class="btn btn--primary js-ref" href="https://agents.inssmart.ru/signup" target="_blank" rel="noopener" data-goal="ref_steps">Зарегистрироваться на Инссмарт</a>
+      <small>Ссылка реферальная: вам это ничего не стоит, а платформа выплачивает нам бонус за приглашение.</small>
+    </div>
+  </div>
+</section>
+
+<!-- ============ GEO ============ -->
+<section class="section section--tight">
+  <div class="container">
+    <div class="geo reveal">
+      <div class="geo__text">
+        <span class="eyebrow eyebrow--light">География</span>
+        <h2 class="h2">Работайте из любого города России</h2>
+        <p>Полисы оформляются онлайн через личный кабинет. Офис не нужен — достаточно телефона или ноутбука и интернета.</p>
+        <a class="btn btn--accent js-tg" href="https://t.me/prostrahovanie" data-goal="tg_geo">Перейти в Telegram</a>
+      </div>
+      <div class="geo__cities" aria-hidden="true">
+        <span>Москва</span><span>Санкт-Петербург</span><span>Казань</span><span>Новосибирск</span>
+        <span>Екатеринбург</span><span>Краснодар</span><span>Самара</span><span>Уфа</span>
+        <span>Ростов-на-Дону</span><span>Пермь</span><span>Воронеж</span><span>Омск</span>
+        <span>Тюмень</span><span>Владивосток</span><span class="more">и ваш город</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section class="section" id="faq">
+  <div class="container faq">
+    <div class="section__head section__head--left">
+      <span class="eyebrow">Частые вопросы</span>
+      <h2 class="h2">Отвечаем честно</h2>
+      <p class="section__lead">Не нашли ответ? Напишите в <a class="link js-manager js-manager-always" href="https://t.me/prostrahovanie" data-goal="tg_faq">Telegram</a> — ответим.</p>
+    </div>
+
+    <div class="faq__list">
+      <details class="faq__item" open>
+        <summary>Это трудоустройство?</summary>
+        <p>Нет. Вы работаете как агент на платформе Инссмарт по договору-оферте, который принимаете при регистрации. Трудового договора и оклада нет — вы получаете вознаграждение за оформленные полисы.</p>
+      </details>
+      <details class="faq__item">
+        <summary>Кто вы и при чём тут Инссмарт?</summary>
+        <p>ПроСтрахование — партнёр платформы Инссмарт, а не страховая компания и не работодатель. Если вы регистрируетесь по нашей реферальной ссылке, вы ничего не платите, а Инссмарт выплачивает нам бонус по партнёрской программе. Взамен мы помогаем вам разобраться на старте.</p>
+      </details>
+      <details class="faq__item">
+        <summary>Нужно ли платить за обучение или регистрацию?</summary>
+        <p>Нет. Регистрация и обучающие материалы на Инссмарт бесплатные.</p>
+      </details>
+      <details class="faq__item">
+        <summary>Как выводить вознаграждение?</summary>
+        <p>Вознаграждение зачисляется на баланс в личном кабинете. Физлица выводят его на банковскую карту, ИП и юрлица — на расчётный счёт.</p>
+      </details>
+      <details class="faq__item">
+        <summary>Нужно ли открывать ИП?</summary>
+        <p>Не обязательно. Но доход нужно легализовать. Самый простой вариант — самозанятость (НПД) в приложении «Мой налог»: налог 4–6% с дохода, без взносов и отчётности. Если откроете ИП, банк можете выбрать любой — тот, что вам удобен.</p>
+      </details>
+      <details class="faq__item">
+        <summary>Нужен ли опыт?</summary>
+        <p>Нет. На платформе есть обучающие материалы и поддержка, а мы отвечаем на вопросы в Telegram.</p>
+      </details>
+      <details class="faq__item">
+        <summary>Где брать клиентов?</summary>
+        <p>Это ваша задача как агента: родственники, знакомые, соцсети, автомобилисты, ипотечники вашего города. В канале делимся идеями и разбираем, что работает.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TELEGRAM ============ -->
+<section class="section section--form" id="join">
+  <div class="container lead">
+    <div class="lead__text">
+      <span class="eyebrow eyebrow--light">Наш Telegram-канал</span>
+      <h2 class="h2">Пошаговый старт — в&nbsp;Telegram</h2>
+      <p>В канале ПроСтрахование рассказываем, как зарегистрироваться на Инссмарт, с чего начать и как найти первых клиентов.</p>
+      <ul class="checks">
+        <li>Инструкция по регистрации и первому полису</li>
+        <li>Какие продукты проще продавать новичку</li>
+        <li>Где искать клиентов и как отвечать на возражения</li>
+        <li>Ответы на вопросы в комментариях</li>
+      </ul>
+      <div class="lead__cta">
+        <a class="btn btn--accent btn--lg js-tg" href="https://t.me/prostrahovanie" data-goal="tg_main">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21.5 4.3 18.4 19c-.2 1-.8 1.3-1.7.8l-4.6-3.4-2.2 2.1c-.3.3-.5.5-1 .5l.3-4.7 8.6-7.8c.4-.3-.1-.5-.6-.2L6.6 13 2 11.6c-1-.3-1-1 .2-1.5L20.1 3.2c.8-.3 1.6.2 1.4 1.1Z" fill="currentColor"/></svg>
+          Перейти в Telegram-канал
+        </a>
+        <a class="tg-link js-manager" href="https://t.me/prostrahovanie" data-goal="tg_manager" hidden>Написать нам</a>
+        <a class="tg-link js-ref" href="https://agents.inssmart.ru/signup" target="_blank" rel="noopener" data-goal="ref_join" hidden>Сразу зарегистрироваться на Инссмарт</a>
+      </div>
+      <p class="lead__note">Бесплатно · без звонков и анкет · отписаться можно в любой момент</p>
+    </div>
+
+    <!-- Telegram channel mockup -->
+    <div class="tgm js-tg-box" aria-hidden="true">
+      <div class="tgm__head">
+        <span class="tgm__ava">
+          <svg viewBox="0 0 40 40"><path d="M20 8.5 29.5 12v7.6c0 6.1-4 10.6-9.5 12.4-5.5-1.8-9.5-6.3-9.5-12.4V12L20 8.5Z" fill="#fff"/><path d="m15.6 20.2 3.2 3.2 6-6.2" fill="none" stroke="#2F5BFF" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </span>
+        <div>
+          <b>ПроСтрахование</b>
+          <small>канал · старт в страховании</small>
+        </div>
+      </div>
+      <div class="tgm__feed">
+        <div class="tgm__post">
+          <b>Как стать страховым агентом с нуля 🛡</b>
+          <p>Регистрация на Инссмарт, обучение в кабинете, первый полис — пошагово.</p>
+          <p>✅ Бесплатно<br>✅ Онлайн, из любого города<br>✅ Без опыта</p>
+          <span class="tgm__meta">10:24</span>
+        </div>
+        <div class="tgm__post">
+          <b>Это не работа с окладом — и это важно 💡</b>
+          <p>Рассказываем честно, как устроен доход агента и сколько времени нужно на первые продажи ⬇️</p>
+          <span class="tgm__meta">12:40</span>
+        </div>
+      </div>
+      <div class="tgm__join">Подписаться</div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer">
+  <div class="container footer__inner">
+    <div class="footer__brand">
+      <a href="#top" class="logo logo--light">
+        <svg class="logo__mark" viewBox="0 0 40 40" aria-hidden="true">
+          <rect width="40" height="40" rx="12" fill="#2F5BFF"/>
+          <path d="M20 8.5 29.5 12v7.6c0 6.1-4 10.6-9.5 12.4-5.5-1.8-9.5-6.3-9.5-12.4V12L20 8.5Z" fill="#fff"/>
+          <path d="m15.6 20.2 3.2 3.2 6-6.2" fill="none" stroke="#2F5BFF" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span class="logo__text"><b>Про</b>Страхование</span>
+      </a>
+      <a class="footer__tg js-tg js-tg-handle" href="https://t.me/prostrahovanie" data-goal="tg_footer">@prostrahovanie</a>
+    </div>
+    <p class="footer__legal">
+      © <span id="year">2026</span> ПроСтрахование — независимый партнёр платформы «Инссмарт». Мы не страховая компания и не работодатель.
+      <span class="js-owner" hidden></span><br>
+      Вознаграждения указаны ориентировочно по данным inssmart.ru и не являются гарантией дохода. Актуальные ставки и условия — в личном кабинете агента Инссмарт. Ссылка на регистрацию реферальная: Инссмарт выплачивает нам бонус за приглашённых агентов. Информация на сайте не является публичной офертой.
+    </p>
+  </div>
+</footer>
+
+<!-- sticky CTA for mobile -->
+<div class="sticky-cta" id="stickyCta">
+  <a class="btn btn--accent btn--block js-tg" href="https://t.me/prostrahovanie" data-goal="tg_sticky">Перейти в Telegram-канал</a>
+</div>
+
+<script src="config.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
