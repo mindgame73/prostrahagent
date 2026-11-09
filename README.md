@@ -2,7 +2,7 @@
 
 Статичный сайт без сборки: `index.html`, `styles.css`, `script.js`, `config.js`, `favicon.svg`,
 плюс `consent.js` (баннер cookie), `privacy.html` / `consent.html` + `docs.js` (документы по 152-ФЗ) и `fonts/` (шрифты лежат локально, без Google Fonts).
-Кнопки «Стать агентом» ведут в Telegram-канал. Для клиентов есть блок «Купить страховку» (`#policy`) с виджетом Инссмарт: вкладки ОСАГО / страхование ипотеки.
+Кнопки «Стать агентом» ведут в Telegram-канал. Для клиентов есть блок «Рассчитать страховку» (`#policy`) с виджетом Инссмарт (вкладки ОСАГО / страхование ипотеки) и кнопкой «Написать менеджеру» — она ведёт на `manager` из `config.js`, а пока он пуст — в канал.
 
 ## Виджет Инссмарт
 
@@ -38,7 +38,7 @@
 
 Берутся из URL: `utm_*`, `sub1`, `sub2`, `click_id` (также `clickid`, `subid`, `yclid`, `gclid`, `vkclid`, `fbclid`) и запоминаются в браузере.
 
-Цели: `tg_click` — любой переход в TG; по кнопкам — `tg_header`, `tg_hero`, `tg_calc`, `tg_geo`, `tg_main`, `tg_sticky`, `tg_footer`, `tg_faq`, `tg_mockup`, `tg_manager`.
+Цели: `tg_click` — любой переход в TG; по кнопкам — `tg_header`, `tg_hero`, `tg_calc`, `tg_geo`, `tg_main`, `tg_sticky`, `tg_footer`, `tg_faq`, `tg_mockup`, `tg_manager`, `tg_policy_manager` (кнопка «Написать менеджеру» у виджета).
 
 ## Локальный просмотр
 

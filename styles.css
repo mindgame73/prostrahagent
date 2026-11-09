@@ -294,6 +294,23 @@ button, input, select { font: inherit; color: inherit; }
 .ptab:hover { color: var(--ink); }
 .ptab.is-active { background: var(--ink); color: #fff; }
 @media (max-width: 480px) { .ptabs { width: 100%; } .ptab { flex: 1; padding: 10px 8px; font-size: 14px; } }
+.assist {
+  display: flex; align-items: center; gap: 16px; max-width: 960px; margin: 0 auto 16px;
+  padding: 16px 16px 16px 20px; background: var(--blue-soft); border-radius: var(--radius);
+}
+.assist__icon {
+  flex: none; display: grid; place-items: center; width: 44px; height: 44px;
+  border-radius: 14px; background: var(--surface); color: var(--blue);
+}
+.assist__icon svg { width: 24px; height: 24px; }
+.assist__text { flex: 1; display: grid; gap: 2px; font-size: 15px; color: var(--muted); }
+.assist__text b { color: var(--ink); font-size: 16px; }
+.assist__btn { flex: none; }
+@media (max-width: 700px) {
+  .assist { flex-wrap: wrap; padding: 16px; }
+  .assist__text { flex: 1 1 calc(100% - 60px); }
+  .assist__btn { flex: 1 1 100%; }
+}
 .widget-note { max-width: 960px; margin: 16px auto 0; font-size: 14px; color: var(--muted); text-align: center; }
 @media (max-width: 700px) { .widget-box { padding: 4px; border-radius: var(--radius-sm); } }
 
