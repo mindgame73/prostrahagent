@@ -157,12 +157,38 @@
   }
 
   /* ---------- липкая кнопка на мобильном ---------- */
-  var sticky = $("#stickyCta"), hero = $(".hero"), joinSec = $("#join");
+  // не показываем её поверх виджета оформления полиса
+  var sticky = $("#stickyCta"), hero = $(".hero"), joinSec = $("#join"), policySec = $("#policy");
   if ("IntersectionObserver" in window && sticky) {
-    var heroVisible = true, joinVisible = false;
-    var upd = function () { sticky.classList.toggle("show", !heroVisible && !joinVisible); };
+    var heroVisible = true, joinVisible = false, policyVisible = false;
+    var upd = function () { sticky.classList.toggle("show", !heroVisible && !joinVisible && !policyVisible); };
     new IntersectionObserver(function (e) { heroVisible = e[0].isIntersecting; upd(); }).observe(hero);
     new IntersectionObserver(function (e) { joinVisible = e[0].isIntersecting; upd(); }, { threshold: 0.05 }).observe(joinSec);
+    if (policySec) new IntersectionObserver(function (e) { policyVisible = e[0].isIntersecting; upd(); }).observe(policySec);
+  }
+
+  /* ---------- Виджет Инссмарт: вкладки ОСАГО / ипотека ----------
+     Загрузчик Инссмарт вставляет iframe на место своего <script>,
+     поэтому при смене вкладки пересоздаём скрипт с другим data-product. */
+  var wBox = $("#inssmartWidget");
+  if (wBox) {
+    $$(".ptab").forEach(function (tab) {
+      tab.addEventListener("click", function () {
+        if (tab.classList.contains("is-active")) return;
+        var old = $("script", wBox);
+        if (!old) return;
+        $$(".ptab").forEach(function (t) {
+          var on = t === tab;
+          t.classList.toggle("is-active", on);
+          t.setAttribute("aria-selected", on ? "true" : "false");
+        });
+        var s = document.createElement("script");
+        Array.prototype.forEach.call(old.attributes, function (a) { s.setAttribute(a.name, a.value); });
+        s.setAttribute("data-product", tab.getAttribute("data-product"));
+        wBox.innerHTML = "";
+        wBox.appendChild(s);
+      });
+    });
   }
 
   $("#year").textContent = new Date().getFullYear();
