@@ -6,7 +6,7 @@ window.SITE_CONFIG = {
   telegram: "prostrahagent",
 
   // Ваш ник для связи (без @) — кнопка «Написать нам». Пусто — кнопки нет.
-  manager: "",
+  manager: "kratosyx",
 
   // Оператор персональных данных — показывается в подвале и подставляется
   // в privacy.html / consent.html. Без этих полей политика неполная.
@@ -25,6 +25,7 @@ window.SITE_CONFIG = {
     // "fb_agents_nov": "https://t.me/+AbCdEf123",
     // "vk":            "https://t.me/+XyZ987",
     // "default":       "https://t.me/+DefaultLink"
+    "default": "https://t.me/+nqj0TSTPU7xjZGYx"
   },
 
   // Бот вместо канала (ник без @). Если задан — кнопки ведут в бота
