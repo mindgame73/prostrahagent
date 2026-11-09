@@ -114,6 +114,9 @@ button, input, select { font: inherit; color: inherit; }
 .nav { display: flex; gap: 32px; font-weight: 600; font-size: 15px; color: var(--muted); }
 .nav a:hover { color: var(--ink); }
 .header__actions { display: flex; align-items: center; gap: 10px; }
+.nav a { white-space: nowrap; }
+@media (max-width: 1180px) { .nav { gap: 20px; font-size: 14px; } }
+@media (max-width: 1040px) { .header__actions .btn span { display: none; } }
 @media (max-width: 900px) { .nav { display: none; } }
 @media (max-width: 520px) {
   .logo__text { font-size: 15px; }
@@ -268,6 +271,16 @@ button, input, select { font: inherit; color: inherit; }
   .section__head { margin-bottom: 36px; }
   .section__lead { font-size: 16.5px; }
 }
+
+/* ---------- policy widget (Инссмарт) ---------- */
+.widget-box {
+  max-width: 960px; margin: 0 auto; min-height: 436px;
+  background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius);
+  box-shadow: var(--shadow); padding: 16px; overflow: hidden;
+}
+.widget-box iframe { display: block; }
+.widget-note { max-width: 960px; margin: 16px auto 0; font-size: 14px; color: var(--muted); text-align: center; }
+@media (max-width: 700px) { .widget-box { padding: 4px; border-radius: var(--radius-sm); } }
 
 /* ---------- cards ---------- */
 .grid-6 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
