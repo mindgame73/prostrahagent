@@ -1,4 +1,4 @@
-# ПроСтрахование — прелендинг для перелива трафика в Telegram
+# ПроСтрахАгент — прелендинг для перелива трафика в Telegram
 
 Статичный сайт без сборки: `index.html`, `styles.css`, `script.js`, `config.js`, `favicon.svg`,
 плюс `consent.js` (баннер cookie), `privacy.html` / `consent.html` + `docs.js` (документы по 152-ФЗ) и `fonts/` (шрифты лежат локально, без Google Fonts).
