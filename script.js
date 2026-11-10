@@ -199,6 +199,18 @@
         wBox.appendChild(s);
       });
     });
+
+    /* Ссылки прямо на калькулятор: prostrahagent.ru/#osago, #ipoteka, #travel… (для рекламы) */
+    var openFromHash = function () {
+      var key = location.hash.replace("#", "");
+      var tab = key && $('.ptab[data-hash="' + key + '"]');
+      if (!tab) return;
+      tab.click();
+      var sec = $("#policy");
+      if (sec) setTimeout(function () { sec.scrollIntoView({ block: "start" }); }, 50);
+    };
+    window.addEventListener("hashchange", openFromHash);
+    openFromHash();
   }
 
   $("#year").textContent = new Date().getFullYear();

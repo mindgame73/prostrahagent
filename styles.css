@@ -125,7 +125,7 @@ button, input, select { font: inherit; color: inherit; }
 }
 
 /* ---------- hero ---------- */
-.hero { position: relative; overflow: hidden; padding: 72px 0 88px; }
+.hero { position: relative; overflow: hidden; padding: 56px 0 88px; }
 .hero__glow {
   position: absolute; inset: -20% -10% auto auto; width: 820px; height: 820px; border-radius: 50%;
   background: radial-gradient(circle at center, rgba(47, 91, 255, .20), rgba(47, 91, 255, 0) 62%);
@@ -143,8 +143,8 @@ button, input, select { font: inherit; color: inherit; }
 
 .hero__title {
   font-family: var(--font-head); font-weight: 600;
-  font-size: clamp(32px, 4.6vw, 54px); letter-spacing: -.035em; line-height: 1.06;
-  margin: 24px 0 22px;
+  font-size: clamp(32px, 4.2vw, 50px); letter-spacing: -.035em; line-height: 1.06;
+  margin: 22px 0 20px;
 }
 .hl {
   position: relative; white-space: nowrap; color: var(--blue);
@@ -158,7 +158,26 @@ button, input, select { font: inherit; color: inherit; }
 .hero__cta { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
 .hero__choose { margin-top: 32px; font-weight: 800; font-size: 13px; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
 .hero__choose + .hero__cta { margin-top: 12px; }
-.hero__hint { margin-top: 14px; font-size: 14px; color: var(--muted); }
+.choice { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 12px; }
+.choice__card {
+  display: flex; align-items: center; gap: 14px; padding: 18px 18px 18px 16px; border-radius: 20px;
+  transition: transform .15s ease, box-shadow .2s ease;
+}
+.choice__card:hover { transform: translateY(-2px); box-shadow: var(--shadow); }
+.choice__card--agent { background: var(--accent); color: var(--accent-ink); }
+.choice__card--client { background: var(--ink); color: #fff; }
+.choice__icon {
+  flex: none; display: grid; place-items: center; width: 44px; height: 44px; border-radius: 14px;
+  background: rgba(255, 255, 255, .55);
+}
+.choice__card--client .choice__icon { background: rgba(255, 255, 255, .12); }
+.choice__icon svg { width: 22px; height: 22px; }
+.choice__body { flex: 1; display: grid; gap: 4px; min-width: 0; }
+.choice__body b { font-size: 17px; line-height: 1.2; }
+.choice__body small { font-size: 13.5px; line-height: 1.35; opacity: .8; }
+.choice__arrow { flex: none; width: 20px; height: 20px; opacity: .7; }
+@media (max-width: 1100px) and (min-width: 901px) { .choice { grid-template-columns: 1fr; } }
+@media (max-width: 560px) { .choice { grid-template-columns: 1fr; } }
 
 .stats {
   list-style: none; padding: 28px 0 0; margin: 40px 0 0; border-top: 1px solid var(--line);
@@ -453,6 +472,8 @@ input[type="range"]:focus-visible { box-shadow: 0 0 0 4px rgba(47, 91, 255, .25)
 /* ---------- faq ---------- */
 .faq { display: grid; grid-template-columns: .8fr 1.2fr; gap: 64px; align-items: start; }
 .faq__list { display: grid; gap: 12px; }
+.faq__group { margin: 8px 0 -2px; font-size: 13px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; color: var(--blue); }
+.faq__group:first-child { margin-top: 0; }
 .faq__item { background: var(--surface); border: 1px solid var(--line); border-radius: 18px; padding: 0 24px; transition: box-shadow .2s; }
 .faq__item[open] { box-shadow: var(--shadow); border-color: transparent; }
 .faq__item summary {
@@ -533,10 +554,10 @@ input[type="range"]:focus-visible { box-shadow: 0 0 0 4px rgba(47, 91, 255, .25)
   background: rgba(255, 255, 255, .92); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
   border-top: 1px solid var(--line); transform: translateY(110%); transition: transform .3s ease; display: none;
 }
-.sticky-cta .btn { background: var(--accent); }
+.sticky-cta .btn { padding: 14px 12px; font-size: 15px; }
 .sticky-cta.show { transform: none; }
 @media (max-width: 760px) {
-  .sticky-cta { display: block; }
+  .sticky-cta { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
   .footer { padding-bottom: 110px; }
 }
 
@@ -592,3 +613,7 @@ input[type="range"]:focus-visible { box-shadow: 0 0 0 4px rgba(47, 91, 255, .25)
 .doc th, .doc td { text-align: left; vertical-align: top; padding: 10px 12px; border: 1px solid var(--line); }
 .doc th { background: var(--bg); font-weight: 700; }
 .doc__table { overflow-x: auto; }
+
+/* ---------- steps CTA ---------- */
+.steps__cta { display: flex; justify-content: center; margin-top: 40px; }
+@media (max-width: 600px) { .steps__cta .btn { width: 100%; } }

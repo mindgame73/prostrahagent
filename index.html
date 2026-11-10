@@ -22,7 +22,7 @@
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="preload" href="fonts/manrope-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="fonts/unbounded-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="styles.css?v=8">
+  <link rel="stylesheet" href="styles.css?v=10">
 </head>
 <body>
 
@@ -40,7 +40,7 @@
 
     <nav class="nav" aria-label="Основная навигация">
       <a href="#policy">Рассчитать полис</a>
-      <a href="#why">Как это работает</a>
+      <a href="#why">Стать агентом</a>
       <a href="#calc">Доход</a>
       <a href="#steps">Как начать</a>
       <a href="#faq">Вопросы</a>
@@ -62,25 +62,26 @@
   <div class="hero__glow" aria-hidden="true"></div>
   <div class="container hero__inner">
     <div class="hero__text">
-      <span class="tag"><span class="tag__dot"></span>Старт в страховании онлайн</span>
+      <span class="tag"><span class="tag__dot"></span>Расчёт полисов онлайн · старт агентом</span>
       <h1 class="hero__title">
         Страхование — это <span class="hl">доход</span>, а&nbsp;не&nbsp;скучная бумажная работа
       </h1>
       <p class="hero__lead">
-        Оформляйте страховые полисы онлайн и получайте вознаграждение за каждый. Бесплатно и без опыта. Это не работа по найму с окладом, а&nbsp;ваше дело: сколько полисов — столько дохода. Поможем разобраться на старте в нашем Telegram-канале.
+        Оформляйте страховые полисы онлайн и получайте вознаграждение за каждый — бесплатно и без опыта. А если вам нужна страховка, рассчитайте её здесь же.
       </p>
       <p class="hero__choose">Что вам нужно?</p>
-      <div class="hero__cta">
-        <a class="btn btn--accent btn--lg js-tg" href="https://t.me/prostrahagent" data-goal="tg_hero">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21.5 4.3 18.4 19c-.2 1-.8 1.3-1.7.8l-4.6-3.4-2.2 2.1c-.3.3-.5.5-1 .5l.3-4.7 8.6-7.8c.4-.3-.1-.5-.6-.2L6.6 13 2 11.6c-1-.3-1-1 .2-1.5L20.1 3.2c.8-.3 1.6.2 1.4 1.1Z" fill="currentColor"/></svg>
-          Стать агентом
+      <div class="choice">
+        <a class="choice__card choice__card--agent js-tg" href="https://t.me/prostrahagent" data-goal="tg_hero">
+          <span class="choice__icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21.5 4.3 18.4 19c-.2 1-.8 1.3-1.7.8l-4.6-3.4-2.2 2.1c-.3.3-.5.5-1 .5l.3-4.7 8.6-7.8c.4-.3-.1-.5-.6-.2L6.6 13 2 11.6c-1-.3-1-1 .2-1.5L20.1 3.2c.8-.3 1.6.2 1.4 1.1Z" fill="currentColor"/></svg></span>
+          <span class="choice__body"><b>Стать агентом</b><small>Доход за каждый полис, старт в Telegram</small></span>
+          <svg class="choice__arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </a>
-        <a class="btn btn--primary btn--lg" href="#policy">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5 19.5 6.5v5.6c0 4.4-3.1 7.6-7.5 8.9-4.4-1.3-7.5-4.5-7.5-8.9V6.5L12 3.5Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="m8.8 12 2.2 2.2 4.2-4.4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          Рассчитать страховку
+        <a class="choice__card choice__card--client" href="#policy" data-goal="hero_policy">
+          <span class="choice__icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5 19.5 6.5v5.6c0 4.4-3.1 7.6-7.5 8.9-4.4-1.3-7.5-4.5-7.5-8.9V6.5L12 3.5Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="m8.8 12 2.2 2.2 4.2-4.4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          <span class="choice__body"><b>Рассчитать страховку</b><small>ОСАГО, ипотека, путешествия — онлайн</small></span>
+          <svg class="choice__arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </a>
       </div>
-      <p class="hero__hint">Агентам — старт в Telegram · Клиентам — расчёт ОСАГО, КАСКО, ипотеки и других полисов онлайн или через личного менеджера</p>
 
       <ul class="stats">
         <li><b>0 ₽</b><span>платформа бесплатная</span></li>
@@ -150,14 +151,14 @@
       <p class="section__lead">Сравните цены страховых компаний и оформите полис сами — или доверьте это личному менеджеру. Полис выпускает выбранная страховая компания.</p>
     </div>
     <div class="ptabs" role="tablist" aria-label="Вид страхования">
-      <button type="button" class="ptab is-active" role="tab" aria-selected="true" data-product="/eosago">ОСАГО</button>
-      <button type="button" class="ptab" role="tab" aria-selected="false" data-panel="kaskoPanel">КАСКО</button>
-      <button type="button" class="ptab" role="tab" aria-selected="false" data-product="/mini-kasko">Мини-КАСКО</button>
-      <button type="button" class="ptab" role="tab" aria-selected="false" data-product="/mortgage">Ипотека</button>
-      <button type="button" class="ptab" role="tab" aria-selected="false" data-product="/property">Квартира и дом</button>
-      <button type="button" class="ptab" role="tab" aria-selected="false" data-product="/travel">Путешествия</button>
-      <button type="button" class="ptab" role="tab" aria-selected="false" data-product="/accident">Антиклещ</button>
-      <button type="button" class="ptab" role="tab" aria-selected="false" data-product="/title">Титул</button>
+      <button type="button" class="ptab is-active" role="tab" aria-selected="true" data-product="/eosago" data-hash="osago">ОСАГО</button>
+      <button type="button" class="ptab" role="tab" aria-selected="false" data-panel="kaskoPanel" data-hash="kasko">КАСКО</button>
+      <button type="button" class="ptab" role="tab" aria-selected="false" data-product="/mini-kasko" data-hash="mini-kasko">Мини-КАСКО</button>
+      <button type="button" class="ptab" role="tab" aria-selected="false" data-product="/mortgage" data-hash="ipoteka">Ипотека</button>
+      <button type="button" class="ptab" role="tab" aria-selected="false" data-product="/property" data-hash="kvartira">Квартира и дом</button>
+      <button type="button" class="ptab" role="tab" aria-selected="false" data-product="/travel" data-hash="travel">Путешествия</button>
+      <button type="button" class="ptab" role="tab" aria-selected="false" data-product="/accident" data-hash="antiklesh">Антиклещ</button>
+      <button type="button" class="ptab" role="tab" aria-selected="false" data-product="/title" data-hash="titul">Титул</button>
     </div>
     <div class="assist">
       <span class="assist__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.6" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M5 20c.8-3.6 3.6-5.5 7-5.5s6.2 1.9 7 5.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></span>
@@ -170,6 +171,28 @@
         Написать менеджеру
       </a>
     </div>
+    <script>
+      /* Виджет сам прокручивает страницу (сообщения "scroll": top/bottom) и делает это грубо:
+         считает от высоты монитора, а не окна, и прячет поле под липкую шапку.
+         Перехватываем до загрузчика и прокручиваем, только если поле реально вне экрана. */
+      (function () {
+        window.addEventListener("message", function (e) {
+          var d = e.data;
+          if (!d || d.name !== "scroll" || !d.value) return;
+          e.stopImmediatePropagation();
+          var f = document.getElementById("inssmart-b2c-frame");
+          if (!f) return;
+          var el = d.value.elPosition || {};
+          var y = window.pageYOffset, header = 88;
+          var top = f.getBoundingClientRect().top + y + (el.offsetTop || 0);
+          var bottom = top + (el.offsetHeight || 0);
+          var target = null;
+          if (d.value.position === "top" && (top < y + header || top > y + window.innerHeight - 120)) target = top - header;
+          if (d.value.position === "bottom" && bottom > y + window.innerHeight - 16) target = bottom - window.innerHeight + 32;
+          if (target !== null) window.scrollTo({ top: Math.max(0, target), behavior: "smooth" });
+        }, true);
+      })();
+    </script>
     <div class="widget-box" id="policyWidget">
       <script
         type="text/javascript"
@@ -198,7 +221,7 @@
 <section class="section" id="why">
   <div class="container">
     <div class="section__head">
-      <span class="eyebrow">Как это работает</span>
+      <span class="eyebrow">Для будущих агентов</span>
       <h2 class="h2">Честно о том, что вас ждёт</h2>
       <p class="section__lead">Вы регистрируетесь агентом, оформляете полисы для клиентов и получаете вознаграждение. Мы помогаем разобраться на старте.</p>
     </div>
@@ -312,6 +335,12 @@
       </li>
     </ol>
 
+    <div class="steps__cta">
+      <a class="btn btn--accent btn--lg js-tg" href="https://t.me/prostrahagent" data-goal="tg_steps">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21.5 4.3 18.4 19c-.2 1-.8 1.3-1.7.8l-4.6-3.4-2.2 2.1c-.3.3-.5.5-1 .5l.3-4.7 8.6-7.8c.4-.3-.1-.5-.6-.2L6.6 13 2 11.6c-1-.3-1-1 .2-1.5L20.1 3.2c.8-.3 1.6.2 1.4 1.1Z" fill="currentColor"/></svg>
+        Начать с шага 1 — в Telegram
+      </a>
+    </div>
   </div>
 </section>
 
@@ -345,7 +374,21 @@
     </div>
 
     <div class="faq__list">
+      <p class="faq__group">Клиентам</p>
       <details class="faq__item" open>
+        <summary>Это настоящий полис?</summary>
+        <p>Да. Полис выпускает страховая компания, которую вы выбрали в калькуляторе, и отправляет его на вашу почту. Электронный полис ОСАГО действует так же, как бумажный, его можно проверить по номеру на сайте НСИС.</p>
+      </details>
+      <details class="faq__item">
+        <summary>Сколько стоит расчёт?</summary>
+        <p>Расчёт бесплатный. Вы платите только стоимость полиса, которую показывает калькулятор, — оплата картой при оформлении.</p>
+      </details>
+      <details class="faq__item">
+        <summary>Не получается оформить онлайн или нужен КАСКО</summary>
+        <p>Напишите менеджеру в <a class="link js-manager js-manager-always" href="https://t.me/prostrahagent" data-goal="tg_faq_client">Telegram</a> — он сделает расчёт и поможет оформить полис.</p>
+      </details>
+      <p class="faq__group">Будущим агентам</p>
+      <details class="faq__item">
         <summary>Это трудоустройство?</summary>
         <p>Нет. Вы работаете как страховой агент по договору-оферте, который принимаете при регистрации. Трудового договора и оклада нет — вы получаете вознаграждение за оформленные полисы.</p>
       </details>
@@ -456,11 +499,12 @@
 
 <!-- sticky CTA for mobile -->
 <div class="sticky-cta" id="stickyCta">
-  <a class="btn btn--accent btn--block js-tg" href="https://t.me/prostrahagent" data-goal="tg_sticky">Перейти в Telegram-канал</a>
+  <a class="btn btn--primary" href="#policy" data-goal="sticky_policy">Рассчитать полис</a>
+  <a class="btn btn--accent js-tg" href="https://t.me/prostrahagent" data-goal="tg_sticky">Стать агентом</a>
 </div>
 
 <script src="config.js?v=5"></script>
 <script src="consent.js"></script>
-<script src="script.js?v=8"></script>
+<script src="script.js?v=9"></script>
 </body>
 </html>
