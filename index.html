@@ -22,7 +22,7 @@
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="preload" href="fonts/manrope-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="fonts/unbounded-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="styles.css?v=7">
+  <link rel="stylesheet" href="styles.css?v=8">
 </head>
 <body>
 
@@ -141,13 +141,13 @@
   </div>
 </section>
 
-<!-- ============ POLICY WIDGET (Инссмарт) ============ -->
+<!-- ============ POLICY WIDGET ============ -->
 <section class="section section--policy" id="policy">
   <div class="container">
     <div class="section__head">
       <span class="eyebrow">Рассчитать страховку</span>
       <h2 class="h2">Рассчитайте и оформите полис онлайн</h2>
-      <p class="section__lead">Сравните цены страховых компаний и оформите полис сами — или доверьте это личному менеджеру. Расчёт проводит сервис Инссмарт, полис выпускает выбранная страховая компания.</p>
+      <p class="section__lead">Сравните цены страховых компаний и оформите полис сами — или доверьте это личному менеджеру. Полис выпускает выбранная страховая компания.</p>
     </div>
     <div class="ptabs" role="tablist" aria-label="Вид страхования">
       <button type="button" class="ptab is-active" role="tab" aria-selected="true" data-product="/eosago">ОСАГО</button>
@@ -170,9 +170,7 @@
         Написать менеджеру
       </a>
     </div>
-    <div class="widget-box" id="inssmartWidget">
-      <!-- Виджет Инссмарт: скрипт вставляет iframe на своё место, поэтому подключается здесь, без async/defer.
-           Вкладки выше пересоздают этот скрипт с другим data-product (script.js). -->
+    <div class="widget-box" id="policyWidget">
       <script
         type="text/javascript"
         src="https://widgets.inssmart.ru/widgets/b2c-frame.loader.js"
@@ -463,6 +461,6 @@
 
 <script src="config.js?v=5"></script>
 <script src="consent.js"></script>
-<script src="script.js?v=7"></script>
+<script src="script.js?v=8"></script>
 </body>
 </html>

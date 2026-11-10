@@ -275,7 +275,7 @@ button, input, select { font: inherit; color: inherit; }
   .section__lead { font-size: 16.5px; }
 }
 
-/* ---------- policy widget (Инссмарт) ---------- */
+/* ---------- policy widget ---------- */
 .widget-box {
   max-width: 960px; margin: 0 auto; min-height: 436px;
   background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius);

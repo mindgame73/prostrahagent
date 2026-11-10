@@ -167,11 +167,11 @@
     if (policySec) new IntersectionObserver(function (e) { policyVisible = e[0].isIntersecting; upd(); }).observe(policySec);
   }
 
-  /* ---------- Виджет Инссмарт: вкладки продуктов ----------
-     Загрузчик Инссмарт вставляет iframe на место своего <script>,
+  /* ---------- Виджет расчёта полисов: вкладки продуктов ----------
+     Загрузчик виджета вставляет iframe на место своего <script>,
      поэтому при смене вкладки пересоздаём скрипт с другим data-product.
      Вкладка с data-panel (КАСКО) вместо виджета показывает блок «через менеджера». */
-  var wBox = $("#inssmartWidget");
+  var wBox = $("#policyWidget");
   if (wBox) {
     var first = $("script", wBox);
     var tpl = first ? Array.prototype.map.call(first.attributes, function (a) { return [a.name, a.value]; }) : null;
