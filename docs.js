@@ -12,6 +12,13 @@
     email: o.email,
     telegram: CFG.telegram && "@" + String(CFG.telegram).replace(/^@/, "")
   };
+  // Контакт по вопросам данных: e-mail, если задан, иначе менеджер в Telegram, иначе канал
+  var clean = function (v) { return String(v || "").replace(/^@/, "").replace(/^https?:\/\/t\.me\//, "").trim(); };
+  var tgNick = clean(CFG.manager) || clean(CFG.telegram);
+  Array.prototype.forEach.call(document.querySelectorAll('[data-op="contact"]'), function (el) {
+    if (o.email) el.innerHTML = 'на <a class="link" href="mailto:' + o.email + '">' + o.email + "</a>";
+    else if (tgNick) el.innerHTML = 'в Telegram: <a class="link" href="https://t.me/' + tgNick + '">@' + tgNick + "</a>";
+  });
   Array.prototype.forEach.call(document.querySelectorAll("[data-op]"), function (el) {
     var v = fields[el.getAttribute("data-op")];
     if (v) {
