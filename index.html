@@ -3,15 +3,15 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>ПроСтрахАгент — расчёт ОСАГО и страхования ипотеки онлайн, стать страховым агентом</title>
-  <meta name="description" content="Рассчитайте ОСАГО и страхование ипотеки онлайн: цены страховых компаний в одном калькуляторе, оформление сразу или через личного менеджера. Хотите сами оформлять полисы — станьте страховым агентом: бесплатно, онлайн, без опыта.">
+  <title>ПроСтрахАгент — расчёт ОСАГО, КАСКО и страхования ипотеки онлайн, стать страховым агентом</title>
+  <meta name="description" content="Рассчитайте ОСАГО, КАСКО, страхование ипотеки, квартиры и путешествий онлайн: цены страховых компаний в одном калькуляторе, оформление сразу или через личного менеджера. Хотите сами оформлять полисы — станьте страховым агентом: бесплатно, онлайн, без опыта.">
   <link rel="canonical" href="https://prostrahagent.ru/">
   <!-- Подтверждение прав: Яндекс.Вебмастер и Google Search Console — не удалять -->
   <meta name="yandex-verification" content="fe03d63eb6b6c7c7">
   <meta name="google-site-verification" content="RkQPDU65f1wp5sVrqoMm3YuCVTM0rJ9lIeIEs578MRQ">
   <meta name="theme-color" content="#0B1736">
-  <meta property="og:title" content="ПроСтрахАгент — расчёт ОСАГО и ипотеки онлайн, старт агентом">
-  <meta property="og:description" content="Сравните цены страховых на ОСАГО и ипотеку или станьте агентом: бесплатно, онлайн, без опыта.">
+  <meta property="og:title" content="ПроСтрахАгент — расчёт ОСАГО, КАСКО и ипотеки онлайн, старт агентом">
+  <meta property="og:description" content="Сравните цены страховых на ОСАГО, КАСКО, ипотеку и другие полисы или станьте агентом: бесплатно, онлайн, без опыта.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://prostrahagent.ru/">
   <meta property="og:site_name" content="ПроСтрахАгент">
@@ -22,7 +22,7 @@
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="preload" href="fonts/manrope-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="fonts/unbounded-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="styles.css?v=4">
+  <link rel="stylesheet" href="styles.css?v=7">
 </head>
 <body>
 
@@ -80,7 +80,7 @@
           Рассчитать страховку
         </a>
       </div>
-      <p class="hero__hint">Агентам — старт в Telegram · Клиентам — расчёт ОСАГО и ипотеки онлайн или оформление через личного менеджера</p>
+      <p class="hero__hint">Агентам — старт в Telegram · Клиентам — расчёт ОСАГО, КАСКО, ипотеки и других полисов онлайн или через личного менеджера</p>
 
       <ul class="stats">
         <li><b>0 ₽</b><span>платформа бесплатная</span></li>
@@ -151,7 +151,13 @@
     </div>
     <div class="ptabs" role="tablist" aria-label="Вид страхования">
       <button type="button" class="ptab is-active" role="tab" aria-selected="true" data-product="/eosago">ОСАГО</button>
-      <button type="button" class="ptab" role="tab" aria-selected="false" data-product="/mortgage">Страхование ипотеки</button>
+      <button type="button" class="ptab" role="tab" aria-selected="false" data-panel="kaskoPanel">КАСКО</button>
+      <button type="button" class="ptab" role="tab" aria-selected="false" data-product="/mini-kasko">Мини-КАСКО</button>
+      <button type="button" class="ptab" role="tab" aria-selected="false" data-product="/mortgage">Ипотека</button>
+      <button type="button" class="ptab" role="tab" aria-selected="false" data-product="/property">Квартира и дом</button>
+      <button type="button" class="ptab" role="tab" aria-selected="false" data-product="/travel">Путешествия</button>
+      <button type="button" class="ptab" role="tab" aria-selected="false" data-product="/accident">Антиклещ</button>
+      <button type="button" class="ptab" role="tab" aria-selected="false" data-product="/title">Титул</button>
     </div>
     <div class="assist">
       <span class="assist__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.6" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M5 20c.8-3.6 3.6-5.5 7-5.5s6.2 1.9 7 5.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></span>
@@ -176,6 +182,15 @@
         data-token="408817e5-7e32-404a-9956-497b7191508d"
         data-secret="f5e230a4-98ab-4431-82e5-22f39bbaf79e"
       ></script>
+    </div>
+    <div class="product-panel" id="kaskoPanel" hidden>
+      <h3>КАСКО подбираем через менеджера</h3>
+      <p>Цена КАСКО зависит от машины, водителей, франшизы и набора рисков, поэтому онлайн-калькулятора нет. Напишите менеджеру марку и год автомобиля, город и кто будет за рулём — он запросит расчёты в нескольких страховых и поможет выбрать.</p>
+      <a class="btn btn--tg btn--lg js-manager js-manager-always" href="https://t.me/prostrahagent" data-goal="tg_kasko">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21.5 4.3 18.4 19c-.2 1-.8 1.3-1.7.8l-4.6-3.4-2.2 2.1c-.3.3-.5.5-1 .5l.3-4.7 8.6-7.8c.4-.3-.1-.5-.6-.2L6.6 13 2 11.6c-1-.3-1-1 .2-1.5L20.1 3.2c.8-.3 1.6.2 1.4 1.1Z" fill="currentColor"/></svg>
+        Рассчитать КАСКО с менеджером
+      </a>
+      <p class="product-panel__hint">Нужна только защита от ДТП по вашей вине? Посмотрите вкладку «Мини-КАСКО» — её можно рассчитать онлайн.</p>
     </div>
     <p class="widget-note">Данные, которые вы вводите в форму или передаёте менеджеру, получают Инссмарт и страховая компания — подробнее в <a class="link" href="privacy.html#widget">политике</a>.</p>
   </div>
@@ -448,6 +463,6 @@
 
 <script src="config.js?v=5"></script>
 <script src="consent.js"></script>
-<script src="script.js?v=5"></script>
+<script src="script.js?v=7"></script>
 </body>
 </html>

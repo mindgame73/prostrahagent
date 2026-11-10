@@ -284,16 +284,33 @@ button, input, select { font: inherit; color: inherit; }
 .widget-box iframe { display: block; }
 .section--policy { scroll-margin-top: 72px; }
 .ptabs {
-  display: flex; gap: 6px; width: max-content; max-width: 100%; margin: 0 auto 20px; padding: 6px;
-  background: var(--surface); border: 1px solid var(--line); border-radius: 999px;
+  display: flex; flex-wrap: wrap; justify-content: center; gap: 8px;
+  max-width: 960px; margin: 0 auto 20px;
 }
 .ptab {
-  font: inherit; font-weight: 700; font-size: 15px; color: var(--muted);
-  padding: 10px 22px; border: 0; border-radius: 999px; background: transparent; cursor: pointer;
+  font: inherit; font-weight: 700; font-size: 15px; color: var(--ink); white-space: nowrap;
+  padding: 10px 18px; border: 1px solid var(--line); border-radius: 999px; background: var(--surface); cursor: pointer;
+  transition: border-color .15s, background .15s, color .15s;
 }
-.ptab:hover { color: var(--ink); }
-.ptab.is-active { background: var(--ink); color: #fff; }
-@media (max-width: 480px) { .ptabs { width: 100%; } .ptab { flex: 1; padding: 10px 8px; font-size: 14px; } }
+.ptab:hover { border-color: var(--blue); color: var(--blue); }
+.ptab.is-active { background: var(--blue); border-color: var(--blue); color: #fff; }
+.ptab:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; }
+@media (max-width: 700px) {
+  .ptabs {
+    flex-wrap: nowrap; justify-content: flex-start; overflow-x: auto; scrollbar-width: none;
+    margin: 0 -16px 16px; padding: 2px 16px; scroll-padding-inline: 16px;
+  }
+  .ptabs::-webkit-scrollbar { display: none; }
+  .ptab { flex: none; padding: 9px 14px; font-size: 14px; }
+}
+.product-panel {
+  max-width: 960px; margin: 0 auto; padding: 40px 32px; text-align: center;
+  background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); box-shadow: var(--shadow);
+}
+.product-panel h3 { font-family: var(--font-head); font-weight: 600; font-size: 24px; letter-spacing: -.02em; }
+.product-panel p { max-width: 620px; margin: 14px auto 24px; color: var(--muted); font-size: 16.5px; }
+.product-panel .product-panel__hint { margin: 20px auto 0; font-size: 14px; }
+@media (max-width: 700px) { .product-panel { padding: 28px 18px; } .product-panel .btn { width: 100%; } }
 .assist {
   display: flex; align-items: center; gap: 16px; max-width: 960px; margin: 0 auto 16px;
   padding: 16px 16px 16px 20px; background: var(--blue-soft); border-radius: var(--radius);

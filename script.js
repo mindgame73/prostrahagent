@@ -167,24 +167,34 @@
     if (policySec) new IntersectionObserver(function (e) { policyVisible = e[0].isIntersecting; upd(); }).observe(policySec);
   }
 
-  /* ---------- Виджет Инссмарт: вкладки ОСАГО / ипотека ----------
+  /* ---------- Виджет Инссмарт: вкладки продуктов ----------
      Загрузчик Инссмарт вставляет iframe на место своего <script>,
-     поэтому при смене вкладки пересоздаём скрипт с другим data-product. */
+     поэтому при смене вкладки пересоздаём скрипт с другим data-product.
+     Вкладка с data-panel (КАСКО) вместо виджета показывает блок «через менеджера». */
   var wBox = $("#inssmartWidget");
   if (wBox) {
+    var first = $("script", wBox);
+    var tpl = first ? Array.prototype.map.call(first.attributes, function (a) { return [a.name, a.value]; }) : null;
+    var current = first ? first.getAttribute("data-product") : "";
     $$(".ptab").forEach(function (tab) {
       tab.addEventListener("click", function () {
-        if (tab.classList.contains("is-active")) return;
-        var old = $("script", wBox);
-        if (!old) return;
+        if (tab.classList.contains("is-active") || !tpl) return;
         $$(".ptab").forEach(function (t) {
           var on = t === tab;
           t.classList.toggle("is-active", on);
           t.setAttribute("aria-selected", on ? "true" : "false");
         });
+        try { tab.scrollIntoView({ block: "nearest", inline: "nearest", behavior: "smooth" }); } catch (e) { /* noop */ }
+        var panelId = tab.getAttribute("data-panel");
+        $$(".product-panel").forEach(function (p) { p.hidden = p.id !== panelId; });
+        wBox.hidden = !!panelId;
+        if (panelId) return;
+        var product = tab.getAttribute("data-product");
+        if (product === current) return;
+        current = product;
         var s = document.createElement("script");
-        Array.prototype.forEach.call(old.attributes, function (a) { s.setAttribute(a.name, a.value); });
-        s.setAttribute("data-product", tab.getAttribute("data-product"));
+        tpl.forEach(function (a) { s.setAttribute(a[0], a[1]); });
+        s.setAttribute("data-product", product);
         wBox.innerHTML = "";
         wBox.appendChild(s);
       });
