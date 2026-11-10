@@ -216,8 +216,177 @@ def page(p):
 </html>
 '''
 
+# ---------------- страница «Стать агентом» (/agent/) ----------------
+steps_html = between(idx, '    <ol class="steps">', '    </ol>') + '    </ol>\n'
+
+AGENT = dict(
+    title='Как стать страховым агентом онлайн — без опыта и вложений | ПроСтрахАгент',
+    desc='Станьте страховым агентом онлайн: бесплатная регистрация, обучение в личном кабинете, вознаграждение за каждый оформленный полис. Без опыта, из любого города. Честно о плюсах и минусах.',
+    h1='Как стать страховым агентом онлайн',
+    lead='Страховой агент оформляет полисы для клиентов и получает вознаграждение за каждый. Регистрация, обучение и оформление — онлайн, из любого города. Это не работа по найму с окладом, а ваше дело.',
+    chips=['Бесплатный старт', 'Без опыта', 'Из любого города'],
+    what=[
+      ('Находит клиентов', 'Родственники, знакомые, коллеги, соцсети, автомобилисты и ипотечники вашего города.'),
+      ('Считает варианты', 'В личном кабинете сравнивает цены разных страховых и подбирает подходящий полис.'),
+      ('Оформляет полис онлайн', 'Клиент оплачивает полис, а электронный полис приходит ему на почту.'),
+      ('Получает вознаграждение', 'За каждый оформленный полис. Ставка зависит от вида страхования и страховой компании.'),
+    ],
+    fit=[
+      ('Подработка в своём темпе', 'Можно совмещать с основной работой, учёбой или декретом.'),
+      ('Много знакомых', 'Если вас часто спрашивают про ОСАГО или ипотеку — это готовые первые клиенты.'),
+      ('Есть аудитория', 'Блог, канал, чат дома или автоклуба — там тоже нужны полисы.'),
+      ('Хотите своё дело', 'Без вложений и офиса: доход растёт вместе с числом клиентов.'),
+    ],
+    cons=[
+      ('Нет оклада', 'Доход зависит только от числа оформленных полисов.'),
+      ('Клиентов ищете сами', 'Мы подсказываем, где искать и как отвечать на возражения, но продаёте вы.'),
+      ('Нужно время', 'Новичкам на первые продажи обычно требуется несколько недель.'),
+    ],
+    faq=[
+      ('Это трудоустройство?', 'Нет. Вы работаете как страховой агент по договору-оферте, который принимаете при регистрации. Трудового договора и оклада нет — вы получаете вознаграждение за оформленные полисы.'),
+      ('Нужен ли опыт?', 'Нет. В личном кабинете есть обучающие материалы, а в нашем Telegram-канале разбираем регистрацию и первые продажи.'),
+      ('Нужно ли что-то платить?', 'Нет. Регистрация и обучающие материалы бесплатные.'),
+      ('Сколько можно заработать?', 'Зависит от того, сколько полисов вы оформите и каких. Ориентир можно прикинуть в калькуляторе дохода на главной — это оценка, а не гарантия.'),
+      ('Как выводить вознаграждение?', 'Вознаграждение зачисляется на баланс в личном кабинете агента.'),
+      ('Где брать клиентов?', 'Начните с тех, кто рядом: родственники, знакомые, коллеги, соцсети. В канале делимся идеями и разбираем, что работает.'),
+    ],
+)
+
+def agent_page(a):
+    url = 'https://prostrahagent.ru/agent/'
+    hdr = re.sub(r'<nav class="nav".*?</nav>', '''<nav class="nav" aria-label="Основная навигация">
+      <a href="#what">Чем занимается агент</a>
+      <a href="#steps">Как начать</a>
+      <a href="#faq">Вопросы</a>
+      <a href="/#policy">Рассчитать полис</a>
+    </nav>''', header, flags=re.S)
+    cards = lambda items: ''.join(f'<article class="fact"><h3>{html.escape(t)}</h3><p>{html.escape(d)}</p></article>' for t, d in items)
+    chips = ''.join(f'<li>{CHECK}{html.escape(c)}</li>' for c in a['chips'])
+    cons = ''.join(f'<li><b>{html.escape(t)}</b><span>{html.escape(d)}</span></li>' for t, d in a['cons'])
+    faq_html = ''.join(f'''      <details class="faq__item"{' open' if i == 0 else ''}>
+        <summary>{html.escape(q)}</summary>
+        <p>{html.escape(t)}</p>
+      </details>
+''' for i, (q, t) in enumerate(a['faq']))
+    ld_faq = {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [
+        {"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": t}} for q, t in a['faq']]}
+    ld_crumbs = {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [
+        {"@type": "ListItem", "position": 1, "name": "Главная", "item": "https://prostrahagent.ru/"},
+        {"@type": "ListItem", "position": 2, "name": "Стать агентом", "item": url}]}
+    return f'''<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{html.escape(a["title"])}</title>
+  <meta name="description" content="{html.escape(a["desc"])}">
+  <link rel="canonical" href="{url}">
+  <meta name="theme-color" content="#0B1736">
+  <meta property="og:title" content="{html.escape(a["h1"])}">
+  <meta property="og:description" content="{html.escape(a["desc"])}">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="{url}">
+  <meta property="og:site_name" content="ПроСтрахАгент">
+  <meta property="og:locale" content="ru_RU">
+  <script type="application/ld+json">{json.dumps(ld_crumbs, ensure_ascii=False)}</script>
+  <script type="application/ld+json">{json.dumps(ld_faq, ensure_ascii=False)}</script>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+{''.join(f.replace('href="fonts/', 'href="/fonts/') for f in fonts)}  <link rel="stylesheet" href="/styles.css?v={css_ver}">
+</head>
+<body class="product-page">
+
+{hdr}
+
+<main>
+
+<section class="page-hero">
+  <div class="container">
+    <nav class="crumbs" aria-label="Навигация"><a href="/">Главная</a><span aria-hidden="true">›</span><span>Стать агентом</span></nav>
+    <h1 class="page-hero__title">{html.escape(a["h1"])}</h1>
+    <p class="page-hero__lead">{html.escape(a["lead"])}</p>
+    <ul class="chips">{chips}</ul>
+    <div class="page-hero__cta">
+      <a class="btn btn--accent btn--lg js-tg" href="https://t.me/prostrahagent" data-goal="tg_agent_hero">{TG} Начать в Telegram</a>
+      <a class="btn btn--ghost btn--lg" href="/#calc">Посчитать доход</a>
+    </div>
+  </div>
+</section>
+
+<section class="section section--tight-top" id="what">
+  <div class="container">
+    <div class="section__head section__head--left"><h2 class="h2">Чем занимается страховой агент</h2></div>
+    <div class="facts">{cards(a["what"])}</div>
+  </div>
+</section>
+
+<section class="section section--tight-top">
+  <div class="container">
+    <div class="section__head section__head--left"><h2 class="h2">Кому подходит</h2></div>
+    <div class="facts">{cards(a["fit"])}</div>
+  </div>
+</section>
+
+<section class="section section--tight-top" id="steps">
+  <div class="container">
+    <div class="section__head section__head--left"><h2 class="h2">Четыре шага до первого вознаграждения</h2></div>
+{steps_html}    <div class="steps__cta">
+      <a class="btn btn--accent btn--lg js-tg" href="https://t.me/prostrahagent" data-goal="tg_agent_steps">{TG} Начать с шага 1 — в Telegram</a>
+    </div>
+  </div>
+</section>
+
+<section class="section section--tight-top">
+  <div class="container">
+    <div class="section__head section__head--left">
+      <h2 class="h2">Честно о минусах</h2>
+      <p class="section__lead">Чтобы вы заранее понимали, на что идёте.</p>
+    </div>
+    <ul class="cons">{cons}</ul>
+  </div>
+</section>
+
+<section class="section section--tight-top" id="faq">
+  <div class="container faq">
+    <div class="section__head section__head--left">
+      <span class="eyebrow">Частые вопросы</span>
+      <h2 class="h2">Отвечаем честно</h2>
+      <p class="section__lead">Не нашли ответ? Напишите в <a class="link js-manager js-manager-always" href="https://t.me/prostrahagent" data-goal="tg_agent_faq">Telegram</a> — ответим.</p>
+    </div>
+    <div class="faq__list">
+{faq_html}    </div>
+  </div>
+</section>
+
+<section class="section section--tight-top">
+  <div class="container">
+    <div class="agent-band">
+      <div>
+        <h2>Пошаговый старт — в Telegram</h2>
+        <p>Инструкция по регистрации и первому полису, какие продукты проще продавать новичку и где искать клиентов.</p>
+      </div>
+      <a class="btn btn--accent btn--lg js-tg" href="https://t.me/prostrahagent" data-goal="tg_agent_band">{TG} Перейти в Telegram</a>
+    </div>
+    <p class="client-link">Нужна страховка, а не работа? <a href="/#policy">Рассчитайте полис онлайн →</a></p>
+  </div>
+</section>
+
+</main>
+
+{footer}
+
+<script src="/config.js?v={cfg_ver}"></script>
+<script src="/consent.js"></script>
+<script src="/script.js?v={js_ver}"></script>
+</body>
+</html>
+'''
+
 for p in PAGES:
     d = os.path.join(root, p['slug'])
     os.makedirs(d, exist_ok=True)
     open(os.path.join(d, 'index.html'), 'w', encoding='utf-8').write(page(p))
     print('wrote', p['slug'])
+
+os.makedirs(os.path.join(root, 'agent'), exist_ok=True)
+open(os.path.join(root, 'agent', 'index.html'), 'w', encoding='utf-8').write(agent_page(AGENT))
+print('wrote agent')

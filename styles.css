@@ -549,6 +549,7 @@ input[type="range"]:focus-visible { box-shadow: 0 0 0 4px rgba(47, 91, 255, .25)
 .footer__legal { line-height: 1.7; max-width: 860px; }
 .footer__products { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px 20px; font-size: 15px; }
 .footer__products span { color: rgba(255, 255, 255, .5); }
+.footer__products .footer__sep { color: rgba(255, 255, 255, .3); }
 .footer__products a { color: #fff; font-weight: 600; }
 .footer__products a:hover { color: var(--accent); }
 
@@ -661,3 +662,13 @@ a.ptab { display: inline-block; }
   .agent-band .btn { width: 100%; }
   .ptabs--left { flex-wrap: wrap; overflow: visible; margin: 0; padding: 0; }
 }
+
+/* ---------- страница «Стать агентом» ---------- */
+.page-hero__cta { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 8px; }
+.cons { list-style: none; padding: 0; margin: 24px 0 0; display: grid; gap: 12px; max-width: 760px; }
+.cons li { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 16px 20px; }
+.cons b { display: block; margin-bottom: 4px; }
+.cons span { color: var(--muted); font-size: 15px; }
+.client-link { margin-top: 20px; font-size: 15px; color: var(--muted); }
+.client-link a { color: var(--blue); font-weight: 600; }
+@media (max-width: 600px) { .page-hero__cta .btn { width: 100%; } }
