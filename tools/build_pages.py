@@ -210,7 +210,7 @@ def page(p):
 {footer}
 
 <script src="/config.js?v={cfg_ver}"></script>
-<script src="/consent.js"></script>
+<script src="/consent.js?v=2"></script>
 <script src="/script.js?v={js_ver}"></script>
 </body>
 </html>
@@ -375,7 +375,7 @@ def agent_page(a):
 {footer}
 
 <script src="/config.js?v={cfg_ver}"></script>
-<script src="/consent.js"></script>
+<script src="/consent.js?v=2"></script>
 <script src="/script.js?v={js_ver}"></script>
 </body>
 </html>

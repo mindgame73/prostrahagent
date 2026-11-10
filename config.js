@@ -41,7 +41,7 @@ window.SITE_CONFIG = {
   // Яндекс.Метрика: номер счётчика. Пусто — не подключается.
   // Цели: tg_click (любой переход в TG), tg_hero, tg_header, tg_calc,
   //       tg_geo, tg_main, tg_sticky, tg_footer, tg_faq, tg_mockup, tg_manager
-  metrikaId: "",
+  metrikaId: "114161698",
 
   // Пиксель VK Рекламы. Пусто — не подключается.
   vkPixelId: ""
