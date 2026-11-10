@@ -547,6 +547,10 @@ input[type="range"]:focus-visible { box-shadow: 0 0 0 4px rgba(47, 91, 255, .25)
 .footer__tg { color: #fff; font-weight: 700; }
 .footer__tg:hover { color: var(--accent); }
 .footer__legal { line-height: 1.7; max-width: 860px; }
+.footer__products { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px 20px; font-size: 15px; }
+.footer__products span { color: rgba(255, 255, 255, .5); }
+.footer__products a { color: #fff; font-weight: 600; }
+.footer__products a:hover { color: var(--accent); }
 
 /* ---------- sticky mobile CTA ---------- */
 .sticky-cta {

@@ -188,6 +188,12 @@
           t.setAttribute("aria-selected", on ? "true" : "false");
         });
         try { tab.scrollIntoView({ block: "nearest", inline: "nearest", behavior: "smooth" }); } catch (e) { /* noop */ }
+        // ссылка «Подробнее про …» под калькулятором — только у продуктов со своей страницей
+        var more = $("#policyMore"), moreUrl = tab.getAttribute("data-more");
+        if (more) {
+          more.hidden = !moreUrl;
+          if (moreUrl) { var link = $("a", more); link.href = moreUrl; link.textContent = tab.getAttribute("data-more-text"); }
+        }
         var panelId = tab.getAttribute("data-panel");
         $$(".product-panel").forEach(function (p) { p.hidden = p.id !== panelId; });
         wBox.hidden = !!panelId;
