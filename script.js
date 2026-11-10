@@ -124,8 +124,11 @@
     });
     $("#resultVal").textContent = fmt(total) + " ₽";
   }
-  sliders.forEach(function (el) { el.addEventListener("input", calc); });
-  calc();
+  // калькулятор дохода есть только на главной
+  if (sliders.every(Boolean)) {
+    sliders.forEach(function (el) { el.addEventListener("input", calc); });
+    calc();
+  }
 
   /* ---------- счётчик в макете кабинета ---------- */
   $$(".js-count").forEach(function (el) {

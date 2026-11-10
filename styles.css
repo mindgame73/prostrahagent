@@ -617,3 +617,43 @@ input[type="range"]:focus-visible { box-shadow: 0 0 0 4px rgba(47, 91, 255, .25)
 /* ---------- steps CTA ---------- */
 .steps__cta { display: flex; justify-content: center; margin-top: 40px; }
 @media (max-width: 600px) { .steps__cta .btn { width: 100%; } }
+
+/* ---------- страницы продуктов (/osago/, /ipoteka/, /travel/) ---------- */
+.page-hero { padding: 40px 0 72px; }
+.crumbs { display: flex; flex-wrap: wrap; gap: 8px; font-size: 14px; color: var(--muted); margin-bottom: 20px; }
+.crumbs a { color: var(--blue); }
+.crumbs a:hover { text-decoration: underline; }
+.page-hero__title { font-family: var(--font-head); font-weight: 600; font-size: clamp(30px, 4vw, 48px); letter-spacing: -.035em; line-height: 1.08; max-width: 860px; }
+.page-hero__lead { margin-top: 16px; font-size: 18px; color: var(--muted); max-width: 720px; }
+.chips { list-style: none; display: flex; flex-wrap: wrap; gap: 8px 18px; margin: 20px 0 28px; padding: 0; font-weight: 600; font-size: 15px; }
+.chips li { display: inline-flex; align-items: center; gap: 8px; }
+.chips svg { width: 18px; height: 18px; color: var(--ok); }
+.page-hero .assist, .page-hero .widget-box, .page-hero .widget-note { margin-left: 0; }
+.section--tight-top { padding-top: 0; }
+.facts { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 28px; }
+.fact { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 22px; }
+.fact h3 { font-size: 17px; line-height: 1.3; }
+.fact p { margin-top: 8px; color: var(--muted); font-size: 15px; }
+.facts__note { margin-top: 18px; color: var(--muted); font-size: 15px; }
+.h3-title { font-family: var(--font-head); font-weight: 600; font-size: 24px; letter-spacing: -.02em; margin-bottom: 16px; }
+.ptabs--left { justify-content: flex-start; margin: 0; max-width: none; }
+a.ptab { display: inline-block; }
+.agent-band {
+  display: flex; align-items: center; justify-content: space-between; gap: 24px;
+  padding: 36px 40px; border-radius: 28px; background: var(--ink); color: #fff;
+}
+.agent-band h2 { font-family: var(--font-head); font-weight: 600; font-size: 26px; letter-spacing: -.02em; }
+.agent-band p { margin-top: 10px; color: rgba(255, 255, 255, .72); max-width: 620px; }
+.agent-band .btn { flex: none; }
+.policy-more { max-width: 960px; margin: 10px auto 0; text-align: center; font-size: 15px; color: var(--muted); }
+.policy-more a { color: var(--blue); font-weight: 600; }
+.policy-more a:hover { text-decoration: underline; }
+@media (max-width: 1000px) { .facts { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 700px) {
+  .page-hero { padding: 24px 0 56px; }
+  .page-hero__lead { font-size: 16.5px; }
+  .facts { grid-template-columns: 1fr; }
+  .agent-band { flex-direction: column; align-items: stretch; padding: 28px 22px; }
+  .agent-band .btn { width: 100%; }
+  .ptabs--left { flex-wrap: wrap; overflow: visible; margin: 0; padding: 0; }
+}
