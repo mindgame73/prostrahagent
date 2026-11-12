@@ -29,7 +29,7 @@ window.SITE_CONFIG = {
     // "fb_agents_nov": "https://t.me/+AbCdEf123",
     // "vk":            "https://t.me/+XyZ987",
     // "default":       "https://t.me/+DefaultLink"
-    "default": "https://t.me/+nqj0TSTPU7xjZGYx"
+    // Без "default" все остальные переходы ведут на публичный канал t.me/<telegram>.
   },
 
   // Бот вместо канала (ник без @). Если задан — кнопки ведут в бота
