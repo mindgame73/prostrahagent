@@ -94,8 +94,8 @@
       '<div class="consent__inner">' +
         '<p class="consent__text">Мы хотим использовать cookie и сервисы аналитики (' + tools + '), ' +
         'чтобы понимать, откуда приходят посетители и какая реклама работает. Без вашего согласия они не включатся. ' +
-        'Подробнее — в <a class="link" href="privacy.html">политике</a> и ' +
-        '<a class="link" href="consent.html">тексте согласия</a>.</p>' +
+        'Подробнее — в <a class="link" href="/privacy.html">политике</a> и ' +
+        '<a class="link" href="/consent.html">тексте согласия</a>.</p>' +
         '<div class="consent__actions">' +
           '<button type="button" class="btn btn--sm btn--ghost js-consent-no">Отклонить</button>' +
           '<button type="button" class="btn btn--sm btn--primary js-consent-yes">Принять</button>' +
