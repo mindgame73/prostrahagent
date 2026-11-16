@@ -109,7 +109,7 @@
   onScroll();
 
   /* ---------- калькулятор: полисы × вознаграждение ---------- */
-  var RATES = Object.assign({ osago: 6000, kasko: 20000, ipoteka: 30000 }, CFG.rewards || {});
+  var RATES = Object.assign({ osago: 1500, kasko: 15000, ipoteka: 5000 }, CFG.rewards || {});
   Object.keys(RATES).forEach(function (k) {
     $$('[data-rate="' + k + '"]').forEach(function (el) { el.textContent = fmt(RATES[k]); });
   });
