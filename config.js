@@ -6,7 +6,7 @@ window.SITE_CONFIG = {
   telegram: "prostrahagent",
 
   // Ваш ник для связи (без @) — кнопка «Написать нам». Пусто — кнопки нет.
-  manager: "kratosyx",
+  manager: "agentstrah",
 
   // Оператор персональных данных — показывается в подвале и подставляется
   // в privacy.html / consent.html. Без этих полей политика неполная.
