@@ -25,7 +25,7 @@ header = re.sub(r'<nav class="nav".*?</nav>', '''<nav class="nav" aria-label="О
       <a href="#faq">Вопросы</a>
       <a href="/#why">Стать агентом</a>
     </nav>''', header, flags=re.S)
-footer = footer.replace('href="#top"', 'href="/"').replace('href="privacy.html"', 'href="/privacy.html"').replace('href="consent.html"', 'href="/consent.html"')
+footer = footer.replace('href="#top"', 'href="/"').replace('href="privacy.html"', 'href="/privacy.html"').replace('href="consent.html"', 'href="/consent.html"').replace('href="terms.html"', 'href="/terms.html"')
 
 TG = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21.5 4.3 18.4 19c-.2 1-.8 1.3-1.7.8l-4.6-3.4-2.2 2.1c-.3.3-.5.5-1 .5l.3-4.7 8.6-7.8c.4-.3-.1-.5-.6-.2L6.6 13 2 11.6c-1-.3-1-1 .2-1.5L20.1 3.2c.8-.3 1.6.2 1.4 1.1Z" fill="currentColor"/></svg>'
 CHECK = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12.5 4.2 4.2L19 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>'
