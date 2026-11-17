@@ -161,7 +161,7 @@ def page(p):
     <h1 class="page-hero__title">{html.escape(p["h1"])}</h1>
     <p class="page-hero__lead">{html.escape(p["lead"])}</p>
     <ul class="chips">{chips}</ul>
-{a_assist}{scrollfix}{widget}    <p class="widget-note">Данные, которые вы вводите в форму или передаёте менеджеру, получают сервис расчёта полисов и страховая компания — подробнее в <a class="link" href="/privacy.html#widget">политике</a>.</p>
+{a_assist}{scrollfix}{widget}    <p class="widget-note">Вводя данные, вы соглашаетесь, что они будут переданы ООО «МК Групп» (ИНН 7805730637) и страховым компаниям для расчёта и оформления полиса — на условиях <a class="link" href="https://inssmart.ru/policypersonald" target="_blank" rel="noopener">их политики обработки персональных данных</a>. Подробнее — в <a class="link" href="/privacy.html#widget">нашей политике</a>.</p>
   </div>
 </section>
 
