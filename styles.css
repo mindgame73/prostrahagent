@@ -301,9 +301,6 @@ button, input, select { font: inherit; color: inherit; }
   box-shadow: var(--shadow); padding: 16px; overflow: hidden;
 }
 .widget-box iframe { display: block; }
-/* обрезка баннера виджета «Имущество» (см. script.js, setCrop) */
-.widget-box.crop-top { padding-top: 0; }
-.widget-box.crop-top iframe { margin-top: calc(-1 * var(--crop, 0px)); }
 .section--policy { scroll-margin-top: 72px; }
 .ptabs {
   display: flex; flex-wrap: wrap; justify-content: center; gap: 8px;
