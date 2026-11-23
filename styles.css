@@ -90,6 +90,8 @@ button, input, select { font: inherit; color: inherit; }
 .btn--ghost:hover { border-color: var(--ink); }
 .btn--tg { background: #2AABEE; color: #fff; }
 .btn--tg:hover { background: #1E9AD9; box-shadow: 0 10px 24px -8px rgba(42, 171, 238, .7); }
+.btn--max { background: linear-gradient(135deg, #2F7BFF, #7B3FF2); color: #fff; }
+.btn--max:hover { box-shadow: 0 10px 24px -8px rgba(123, 63, 242, .7); }
 
 .link { color: var(--blue); text-decoration: underline; text-underline-offset: 3px; }
 
