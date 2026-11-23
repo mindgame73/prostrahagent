@@ -546,6 +546,10 @@ input[type="range"]:focus-visible { box-shadow: 0 0 0 4px rgba(47, 91, 255, .25)
 .footer__brand { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; padding-bottom: 28px; border-bottom: 1px solid rgba(255, 255, 255, .1); }
 .footer__tg { color: #fff; font-weight: 700; }
 .footer__tg:hover { color: var(--accent); }
+.footer__channels { display: flex; flex-wrap: wrap; gap: 8px 20px; }
+.lead__max a { color: #fff; text-decoration: underline; text-underline-offset: 3px; }
+.lead__max a:hover { color: var(--accent); }
+.page-hero__note { margin-top: 14px; font-size: 14px; color: var(--muted, #5b6478); }
 .footer__legal { line-height: 1.7; max-width: 860px; }
 .footer__products { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px 20px; font-size: 15px; }
 .footer__products span { color: rgba(255, 255, 255, .5); }
