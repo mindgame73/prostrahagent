@@ -74,6 +74,12 @@
       if (CFG.vkPixelId && window._tmr) window._tmr.push({ type: "reachGoal", id: String(CFG.vkPixelId), goal: name });
     } catch (e) { /* noop */ }
   }
+  /* Цель при открытии страницы: <body data-goal-onload="policy_paid"> (страницы после оплаты) */
+  var onloadGoal = document.body && document.body.getAttribute("data-goal-onload");
+  if (onloadGoal) {
+    var goalTries = 0;
+    (function fireGoal() { if (window.ym || ++goalTries > 20) goal(onloadGoal); else setTimeout(fireGoal, 300); })();
+  }
   function postback() {
     if (!CFG.postbackUrl || !track.click_id || !CONSENT.allowed()) return;
     try { if (sessionStorage.getItem("ps_pb")) return; sessionStorage.setItem("ps_pb", "1"); } catch (e) { /* noop */ }
@@ -179,6 +185,29 @@
     var first = $("script", wBox);
     var tpl = first ? Array.prototype.map.call(first.attributes, function (a) { return [a.name, a.value]; }) : null;
     var current = first ? first.getAttribute("data-product") : "";
+
+    /* Виджет «Имущество» показывает сверху баннер с логотипом платформы. Внутрь чужого
+       iframe залезть нельзя, поэтому сдвигаем iframe вверх и прячем баннер за краем блока.
+       Высота баннера зависит от ширины виджета (замерено 23.11.2026 на 333–926 px). */
+    var cropOn = false;
+    function bannerBottom(w) {
+      if (w >= 840) return 280;                       // широкий баннер: картинка справа
+      var oneLine = 441.5 + 0.573 * (w - 540);        // заголовок в одну строку
+      var twoLine = 353 + 0.58 * (w - 333);           // заголовок в две строки
+      if (w < 420) return twoLine;
+      if (w > 480) return oneLine;
+      return Math.max(oneLine, twoLine);              // зона переноса: лучше срезать больше
+    }
+    function applyCrop() {
+      if (!cropOn) { wBox.classList.remove("crop-top"); wBox.style.removeProperty("--crop"); return; }
+      var f = $("iframe", wBox);
+      var w = f ? f.clientWidth : wBox.clientWidth - 8;
+      wBox.style.setProperty("--crop", Math.round(bannerBottom(w) + 22) + "px");
+      wBox.classList.add("crop-top");
+    }
+    function setCrop(product) { cropOn = product === "/property"; applyCrop(); }
+    window.addEventListener("resize", applyCrop);
+    if (window.MutationObserver) new MutationObserver(applyCrop).observe(wBox, { childList: true });
     $$(".ptab").forEach(function (tab) {
       tab.addEventListener("click", function () {
         if (tab.classList.contains("is-active") || !tpl) return;
@@ -206,6 +235,7 @@
         s.setAttribute("data-product", product);
         wBox.innerHTML = "";
         wBox.appendChild(s);
+        setCrop(product);
       });
     });
 
