@@ -14,6 +14,8 @@ window.SITE_CONFIG = {
   owner: {
     name: "ИП Ядроч Сергей Вячеславович",
     inn: "730294233902",
+    ogrnip: "326730000070102",
+    city: "Ульяновская обл., г. Димитровград",
     email: "surii73@yandex.ru"
   },
 
