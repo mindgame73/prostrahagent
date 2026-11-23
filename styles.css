@@ -672,3 +672,11 @@ a.ptab { display: inline-block; }
 .client-link { margin-top: 20px; font-size: 15px; color: var(--muted); }
 .client-link a { color: var(--blue); font-weight: 600; }
 @media (max-width: 600px) { .page-hero__cta .btn { width: 100%; } }
+
+/* воронка: прямая ссылка куратору и канал в Max */
+.max-ico { display: inline-block; width: 18px; height: 18px; vertical-align: -4px; margin-right: 6px; }
+.lead__max a { color: #fff; text-decoration: underline; text-underline-offset: 3px; }
+.lead__max a:hover { color: var(--accent); }
+.cta-alt { margin-top: 14px; text-align: center; font-size: 15px; }
+.page-hero__note { margin-top: 14px; font-size: 14px; color: var(--muted); }
+.page-hero__note .sep { margin: 0 6px; }
