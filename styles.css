@@ -348,6 +348,7 @@ button, input, select { font: inherit; color: inherit; }
   .assist__btn { flex: 1 1 100%; }
 }
 .widget-note { max-width: 960px; margin: 16px auto 0; font-size: 14px; color: var(--muted); text-align: center; }
+.widget-note--mediator { margin-top: 10px; font-size: 13px; }
 @media (max-width: 700px) { .widget-box { padding: 4px; border-radius: var(--radius-sm); } }
 
 /* ---------- cards ---------- */
