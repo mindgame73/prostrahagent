@@ -1,11 +1,11 @@
 /* ==========================================================
    Согласие на cookie и аналитику (152-ФЗ)
 
-   Яндекс.Метрика, пиксель VK и постбэк в трекер включаются
+   Пиксель VK и постбэк в трекер включаются
    только после «Принять». До этого на устройство посетителя
    ничего рекламного не пишется и никуда не отправляется.
    Баннер показывается, только если в config.js задан хотя бы
-   один из metrikaId / vkPixelId / postbackUrl.
+   один из vkPixelId / postbackUrl.
 
    Наружу: window.PSConsent = { allowed(), onGrant(fn), open() }
    ========================================================== */
@@ -14,7 +14,7 @@
 
   var CFG = window.SITE_CONFIG || {};
   var KEY = "ps_consent";
-  var NEEDED = !!(CFG.metrikaId || CFG.vkPixelId || CFG.postbackUrl);
+  var NEEDED = !!(CFG.vkPixelId || CFG.postbackUrl);
   var listeners = [];
   var started = false;
 
@@ -32,15 +32,6 @@
   function startAnalytics() {
     if (started) return;
     started = true;
-    if (CFG.metrikaId) {
-      (function (m, e, t, r, i, k, a) {
-        m[i] = m[i] || function () { (m[i].a = m[i].a || []).push(arguments); };
-        m[i].l = 1 * new Date();
-        k = e.createElement(t); a = e.getElementsByTagName(t)[0];
-        k.async = 1; k.src = r; a.parentNode.insertBefore(k, a);
-      })(window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
-      window.ym(+CFG.metrikaId, "init", { clickmap: true, trackLinks: true, accurateTrackBounce: true, webvisor: true });
-    }
     if (CFG.vkPixelId) {
       var _tmr = window._tmr || (window._tmr = []);
       _tmr.push({ id: String(CFG.vkPixelId), type: "pageView", start: Date.now() });
@@ -89,7 +80,7 @@
     banner.setAttribute("role", "dialog");
     banner.setAttribute("aria-live", "polite");
     banner.setAttribute("aria-label", "Согласие на cookie");
-    var tools = [CFG.metrikaId && "Яндекс.Метрика (с Вебвизором)", CFG.vkPixelId && "пиксель VK Рекламы", CFG.postbackUrl && "трекер рекламы"].filter(Boolean).join(", ");
+    var tools = [CFG.vkPixelId && "пиксель VK Рекламы", CFG.postbackUrl && "трекер рекламы"].filter(Boolean).join(", ");
     banner.innerHTML =
       '<div class="consent__inner">' +
         '<p class="consent__text">Мы хотим использовать cookie и сервисы аналитики (' + tools + '), ' +

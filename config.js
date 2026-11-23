@@ -44,10 +44,6 @@ window.SITE_CONFIG = {
   // Пример: "https://tracker.example.com/postback?subid={click_id}&status=lead"
   postbackUrl: "",
 
-  // Яндекс.Метрика: номер счётчика. Пусто — не подключается.
-  // Цели: tg_click (любой переход в TG), tg_hero, tg_header, tg_calc,
-  //       tg_geo, tg_main, tg_sticky, tg_footer, tg_faq, tg_mockup, tg_manager
-  metrikaId: "",
 
   // Пиксель VK Рекламы. Пусто — не подключается.
   vkPixelId: ""

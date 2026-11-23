@@ -70,7 +70,6 @@
   function goal(name) {
     if (!CONSENT.allowed()) return;
     try {
-      if (CFG.metrikaId && window.ym) window.ym(+CFG.metrikaId, "reachGoal", name, track);
       if (CFG.vkPixelId && window._tmr) window._tmr.push({ type: "reachGoal", id: String(CFG.vkPixelId), goal: name });
     } catch (e) { /* noop */ }
   }
@@ -78,7 +77,7 @@
   var onloadGoal = document.body && document.body.getAttribute("data-goal-onload");
   if (onloadGoal) {
     var goalTries = 0;
-    (function fireGoal() { if (window.ym || ++goalTries > 20) goal(onloadGoal); else setTimeout(fireGoal, 300); })();
+    (function fireGoal() { if (window._tmr || ++goalTries > 20) goal(onloadGoal); else setTimeout(fireGoal, 300); })();
   }
   function postback() {
     if (!CFG.postbackUrl || !track.click_id || !CONSENT.allowed()) return;
