@@ -31,7 +31,7 @@ TG = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21.5 4.3 18.4 19c-.2
 CHECK = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12.5 4.2 4.2L19 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>'
 
 ALL = [
-    ('ОСАГО', '/osago/'), ('Страхование ипотеки', '/ipoteka/'), ('Путешествия', '/travel/'),
+    ('Проверка КБМ', '/kbm/'), ('ОСАГО', '/osago/'), ('Страхование ипотеки', '/ipoteka/'), ('Путешествия', '/travel/'),
     ('Мини-КАСКО', '/kasko/'), ('Квартира и дом', '/#kvartira'), ('Антиклещ', '/#antiklesh'),
     ('КАСКО', '/kasko/'), ('Титул', '/#titul'),
 ]
@@ -148,6 +148,7 @@ def page(p):
     ld_crumbs = {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [
         {"@type": "ListItem", "position": 1, "name": "Главная", "item": "https://prostrahagent.ru/"},
         {"@type": "ListItem", "position": 2, "name": p['crumb'], "item": url}]}
+    kbm_link = '    <p class="kbm-hint">Не знаете свою скидку за безаварийность? <a class="link" href="/kbm/" data-goal="kbm_from_osago">Проверьте КБМ бесплатно →</a></p>\n' if p['slug'] == 'osago' else ''
     a_assist = assist.replace('data-goal="tg_policy_manager"', f'data-goal="tg_{p["slug"]}_manager"')
     return f'''<!doctype html>
 <html lang="ru">
@@ -181,7 +182,7 @@ def page(p):
     <h1 class="page-hero__title">{html.escape(p["h1"])}</h1>
     <p class="page-hero__lead">{html.escape(p["lead"])}</p>
     <ul class="chips">{chips}</ul>
-{a_assist}{scrollfix}{widget}    <p class="widget-note">Вводя данные, вы соглашаетесь, что они будут переданы ООО «МК Групп» (ИНН 7805730637) и страховым компаниям для расчёта и оформления полиса — на условиях <a class="link" href="https://inssmart.ru/policypersonald" target="_blank" rel="noopener">их политики обработки персональных данных</a>. Подробнее — в <a class="link" href="/privacy.html#widget">нашей политике</a>.</p>
+{kbm_link}{a_assist}{scrollfix}{widget}    <p class="widget-note">Вводя данные, вы соглашаетесь, что они будут переданы ООО «МК Групп» (ИНН 7805730637) и страховым компаниям для расчёта и оформления полиса — на условиях <a class="link" href="https://inssmart.ru/policypersonald" target="_blank" rel="noopener">их политики обработки персональных данных</a>. Подробнее — в <a class="link" href="/privacy.html#widget">нашей политике</a>.</p>
     <p class="widget-note widget-note--mediator"><b>Кто оформляет полис.</b> Расчёт и оформление выполняются через онлайн-платформу ООО «МК Групп» (ИНН 7805730637) на основании её договоров со страховыми компаниями. Договор страхования вы заключаете напрямую со страховой компанией, которую выбрали при расчёте, — она выпускает полис. Владелец сайта денежные средства за полисы не принимает. Наименование страховщика, его лицензия Банка России и правила страхования доступны в калькуляторе до оплаты. При страховом случае обращайтесь в страховую компанию, указанную в полисе.</p>
   </div>
 </section>
@@ -486,6 +487,275 @@ def result_page(r):
 </html>
 '''
 
+# ---------------- страница «Проверка КБМ» (/kbm/) ----------------
+KBM_API = 'https://functions.yandexcloud.net/d4e3e3v52nob2rn4k038'
+KBM = dict(
+  title='Проверка КБМ онлайн бесплатно по базе РСА | ПроСтрахАгент',
+  desc='Проверьте КБМ (скидку за безаварийность) по базе РСА онлайн и бесплатно: ФИО, дата рождения и номер прав. Узнайте, сохранилась ли скидка, и рассчитайте ОСАГО с ней.',
+  h1='Проверка КБМ онлайн: узнайте свою скидку на ОСАГО',
+  lead='КБМ — это скидка за езду без аварий. Она может доходить до 54%, а может «потеряться» после замены прав или ошибки в базе. Проверьте за минуту.',
+  chips=['Бесплатно', 'По базе РСА', 'Данные не храним'],
+  facts=[
+    ('От 0,46 до 3,92', 'Таков диапазон КБМ. Меньше 1 — скидка, больше 1 — повышение цены. Каждый год без аварий снижает коэффициент.'),
+    ('1,17 — стартовый класс', 'Его получают новые водители. Если вы ездите давно, а видите 1,17, скорее всего, скидка не подтянулась из базы.'),
+    ('Скидка не «сгорает» при смене страховой', 'КБМ хранится в общей базе РСА и привязан к водителю, а не к компании.'),
+    ('Скидку можно вернуть', 'Если КБМ посчитан неверно, страховая обязана исправить его по обращению. Мы поможем пройти это бесплатно.'),
+  ],
+  faq=[
+    ('Что такое КБМ?', 'Коэффициент бонус-малус — множитель в цене ОСАГО за аварийность. Чем дольше вы ездите без аварий по своей вине, тем он ниже и тем дешевле полис. После аварии КБМ растёт.'),
+    ('Почему у меня КБМ 1,17, хотя я езжу без аварий?', 'Чаще всего база не связала вас с прошлыми полисами: вы меняли права и в новом полисе не указали старые, полис был «без ограничений» (тогда скидка учитывается у собственника), или в прошлом полисе была ошибка в ФИО или номере прав.'),
+    ('Как восстановить КБМ?', 'Нужно обратиться в страховую с заявлением о пересчёте и подтвердить прошлые полисы. Страховая обязана исправить КБМ в базе. Оставьте заявку — подскажем, куда и что написать, и посчитаем ОСАГО уже с правильной скидкой.'),
+    ('Какие данные нужны для проверки?', 'ФИО, дата рождения, серия и номер водительского удостоверения — как в правах. Если права меняли, проверьте и по старым.'),
+    ('Как часто обновляется КБМ?', 'Класс пересчитывается раз в год, на 1 апреля, по данным о страховых случаях за прошлый год. В течение года при оформлении нового полиса применяется текущий класс.'),
+    ('Вы сохраняете мои данные?', 'Нет. Данные передаются только для проверки в базе РСА через партнёрскую платформу и не сохраняются. Подробнее — в политике обработки персональных данных.'),
+  ],
+)
+
+def kbm_page(k):
+    url = 'https://prostrahagent.ru/kbm/'
+    hdr = re.sub(r'<nav class="nav".*?</nav>', '''<nav class="nav" aria-label="Основная навигация">
+      <a href="#check">Проверить КБМ</a>
+      <a href="#faq">Вопросы</a>
+      <a href="/osago/">Рассчитать ОСАГО</a>
+    </nav>''', header, flags=re.S)
+    chips = ''.join(f'<li>{CHECK}{html.escape(c)}</li>' for c in k['chips'])
+    facts = ''.join(f'<article class="fact"><h3>{html.escape(t)}</h3><p>{html.escape(d)}</p></article>' for t, d in k['facts'])
+    faq_html = ''.join(f'''      <details class="faq__item"{' open' if i == 0 else ''}>
+        <summary>{html.escape(q)}</summary>
+        <p>{html.escape(a)}</p>
+      </details>
+''' for i, (q, a) in enumerate(k['faq']))
+    cross = ''.join(f'<a class="ptab" href="{h}">{html.escape(n)}</a>' for n, h in ALL if h != '/kbm/')
+    ld_faq = {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [
+        {"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in k['faq']]}
+    ld_crumbs = {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [
+        {"@type": "ListItem", "position": 1, "name": "Главная", "item": "https://prostrahagent.ru/"},
+        {"@type": "ListItem", "position": 2, "name": "Проверка КБМ", "item": url}]}
+    return f'''<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{html.escape(k["title"])}</title>
+  <meta name="description" content="{html.escape(k["desc"])}">
+  <link rel="canonical" href="{url}">
+  <meta name="theme-color" content="#0B1736">
+  <meta property="og:title" content="{html.escape(k["h1"])}">
+  <meta property="og:description" content="{html.escape(k["desc"])}">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="{url}">
+  <meta property="og:site_name" content="ПроСтрахАгент">
+  <meta property="og:locale" content="ru_RU">
+  <script type="application/ld+json">{json.dumps(ld_crumbs, ensure_ascii=False)}</script>
+  <script type="application/ld+json">{json.dumps(ld_faq, ensure_ascii=False)}</script>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+{''.join(f.replace('href="fonts/', 'href="/fonts/') for f in fonts)}  <link rel="stylesheet" href="/styles.css?v={css_ver}">
+  <style>
+    .kbm-card {{ background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); box-shadow: var(--shadow); padding: 28px; max-width: 640px; margin-top: 28px; }}
+    .kbm-form {{ display: grid; gap: 16px; }}
+    .kbm-form label {{ display: grid; gap: 6px; font-weight: 700; font-size: 15px; }}
+    .kbm-form label span {{ font-weight: 500; color: var(--muted); font-size: 13px; }}
+    .kbm-form input[type=text], .kbm-form input[type=tel] {{ font: inherit; font-size: 17px; padding: 14px 16px; border: 1px solid var(--line); border-radius: var(--radius-sm); background: var(--bg); color: var(--ink); width: 100%; }}
+    .kbm-form input:focus {{ outline: none; border-color: var(--blue); box-shadow: 0 0 0 4px rgba(47, 91, 255, .15); background: #fff; }}
+    .kbm-row {{ display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }}
+    @media (max-width: 560px) {{ .kbm-row {{ grid-template-columns: 1fr; }} .kbm-card {{ padding: 20px; }} }}
+    .kbm-consent {{ display: flex !important; grid-template-columns: none; gap: 10px !important; align-items: flex-start; font-weight: 500 !important; font-size: 13px !important; color: var(--muted); }}
+    .kbm-consent input {{ margin-top: 3px; width: 18px; height: 18px; flex: none; }}
+    .kbm-hp {{ position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }}
+    .kbm-err {{ color: #C62828; font-weight: 600; font-size: 14px; min-height: 1em; }}
+    .kbm-res {{ display: none; }}
+    .kbm-res.is-on {{ display: block; }}
+    .kbm-big {{ font-family: var(--font-head); font-weight: 600; font-size: clamp(40px, 7vw, 64px); letter-spacing: -.03em; line-height: 1; }}
+    .kbm-badge {{ display: inline-block; padding: 6px 14px; border-radius: 999px; font-weight: 800; font-size: 14px; margin: 10px 0 14px; }}
+    .kbm-badge--good {{ background: var(--accent); color: var(--ink); }}
+    .kbm-badge--warn {{ background: #FFE3A3; color: #6A4A00; }}
+    .kbm-badge--bad {{ background: #FFD4D4; color: #8A1C1C; }}
+    .kbm-res p {{ color: var(--muted); margin-bottom: 18px; }}
+    .kbm-actions {{ display: flex; flex-wrap: wrap; gap: 12px; }}
+    .kbm-lead {{ margin-top: 22px; padding-top: 22px; border-top: 1px solid var(--line); }}
+    .kbm-lead h3 {{ font-family: var(--font-head); font-weight: 600; font-size: 20px; margin-bottom: 6px; }}
+    .kbm-again {{ background: none; border: 0; color: var(--blue); font: inherit; font-weight: 700; cursor: pointer; padding: 0; margin-top: 16px; }}
+    .kbm-hint {{ margin: 14px 0 0; font-weight: 600; }}
+    .btn[disabled] {{ opacity: .6; pointer-events: none; }}
+  </style>
+</head>
+<body class="product-page">
+
+{hdr}
+
+<main>
+
+<section class="page-hero" id="check">
+  <div class="container">
+    <nav class="crumbs" aria-label="Навигация"><a href="/">Главная</a><span aria-hidden="true">›</span><span>Проверка КБМ</span></nav>
+    <h1 class="page-hero__title">{html.escape(k["h1"])}</h1>
+    <p class="page-hero__lead">{html.escape(k["lead"])}</p>
+    <ul class="chips">{chips}</ul>
+
+    <div class="kbm-card">
+      <form class="kbm-form" id="kbmForm" novalidate>
+        <label>Фамилия, имя и отчество<span>Как в водительском удостоверении</span>
+          <input type="text" name="fio" autocomplete="name" placeholder="Иванов Иван Иванович" required></label>
+        <div class="kbm-row">
+          <label>Дата рождения
+            <input type="text" name="birth" inputmode="numeric" autocomplete="bday" placeholder="31.05.1986" maxlength="10" required></label>
+          <label>Серия и номер прав<span>10 знаков, пункт 5</span>
+            <input type="text" name="license" autocomplete="off" placeholder="99 12 345678" maxlength="14" required></label>
+        </div>
+        <div class="kbm-hp" aria-hidden="true"><label>Сайт<input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
+        <label class="kbm-consent"><input type="checkbox" name="agree" required> <span>Согласен на обработку персональных данных для проверки КБМ: они передаются ООО «МК Групп» (ИНН 7805730637) для запроса в базу РСА и не сохраняются. <a class="link" href="/privacy.html#kbm" target="_blank">Политика</a></span></label>
+        <div class="kbm-err" id="kbmErr" role="alert"></div>
+        <button class="btn btn--accent btn--lg" type="submit" id="kbmBtn" data-goal="kbm_check">Проверить КБМ</button>
+      </form>
+
+      <div class="kbm-res" id="kbmRes" aria-live="polite">
+        <div class="kbm-big" id="kbmVal">—</div>
+        <div class="kbm-badge" id="kbmBadge"></div>
+        <p id="kbmText"></p>
+        <div class="kbm-actions" id="kbmActions"></div>
+        <div class="kbm-lead" id="kbmLeadBox">
+          <h3 id="kbmLeadTitle">Вернём скидку бесплатно</h3>
+          <p id="kbmLeadText">Оставьте телефон: подскажем, как восстановить КБМ, и посчитаем ОСАГО уже с правильной скидкой.</p>
+          <form class="kbm-form" id="leadForm" novalidate>
+            <div class="kbm-row">
+              <label>Имя<input type="text" name="name" autocomplete="given-name" placeholder="Иван"></label>
+              <label>Телефон<input type="tel" name="phone" autocomplete="tel" placeholder="+7 900 000-00-00" required></label>
+            </div>
+            <label class="kbm-consent"><input type="checkbox" name="agree" required> <span>Согласен, чтобы со мной связались по этой заявке. <a class="link" href="/privacy.html#kbm" target="_blank">Политика</a></span></label>
+            <div class="kbm-err" id="leadErr" role="alert"></div>
+            <button class="btn btn--accent btn--lg" type="submit" id="leadBtn" data-goal="kbm_lead">Оставить заявку</button>
+          </form>
+        </div>
+        <button class="kbm-again" type="button" id="kbmAgain">↺ Проверить другого водителя</button>
+      </div>
+    </div>
+    <p class="widget-note">Проверка идёт через партнёрскую платформу ООО «МК Групп» по базе Российского союза автостраховщиков. Мы не храним введённые данные.</p>
+  </div>
+</section>
+
+<section class="section section--tight-top">
+  <div class="container">
+    <div class="section__head section__head--left"><h2 class="h2">Что важно знать о КБМ</h2></div>
+    <div class="facts">{facts}</div>
+  </div>
+</section>
+
+<section class="section section--tight-top" id="faq">
+  <div class="container faq">
+    <div class="section__head section__head--left">
+      <span class="eyebrow">Частые вопросы</span>
+      <h2 class="h2">Коротко о главном</h2>
+    </div>
+    <div class="faq__list">
+{faq_html}    </div>
+  </div>
+</section>
+
+<section class="section section--tight-top">
+  <div class="container">
+    <h2 class="h3-title">Рассчитать полис</h2>
+    <div class="ptabs ptabs--left">{cross}</div>
+  </div>
+</section>
+
+</main>
+
+{footer}
+
+<script src="/config.js?v={cfg_ver}"></script>
+<script src="/consent.js?v=3"></script>
+<script src="/script.js?v={js_ver}"></script>
+<script>
+(function () {{
+  var API = '{KBM_API}';
+  var src = (new URLSearchParams(location.search).get('utm_source') || new URLSearchParams(location.search).get('src') || 'site').slice(0, 20);
+  var $ = function (id) {{ return document.getElementById(id); }};
+  var form = $('kbmForm'), res = $('kbmRes'), lastFactor = null;
+  var birth = form.birth;
+  birth.addEventListener('input', function () {{
+    var d = birth.value.replace(/\\D/g, '').slice(0, 8), o = d.slice(0, 2);
+    if (d.length > 2) o += '.' + d.slice(2, 4);
+    if (d.length > 4) o += '.' + d.slice(4);
+    birth.value = o;
+  }});
+  function post(api, body) {{
+    return fetch(API + '?api=' + api, {{ method: 'POST', headers: {{ 'Content-Type': 'application/json' }}, body: JSON.stringify(body) }})
+      .then(function (r) {{ return r.json().catch(function () {{ return {{ ok: false, error: 'Ошибка сервера' }}; }}); }});
+  }}
+  function goal(g) {{ try {{ if (window.PS && PS.goal) PS.goal(g); }} catch (e) {{}} }}
+  form.addEventListener('submit', function (e) {{
+    e.preventDefault();
+    var err = $('kbmErr'), btn = $('kbmBtn');
+    err.textContent = '';
+    if (!form.agree.checked) {{ err.textContent = 'Отметьте согласие на обработку данных.'; return; }}
+    btn.disabled = true; btn.textContent = 'Проверяем в базе РСА…';
+    post('kbm', {{ fio: form.fio.value, birth: form.birth.value, license: form.license.value, website: form.website.value, src: src }})
+      .then(function (r) {{
+        btn.disabled = false; btn.textContent = 'Проверить КБМ';
+        if (!r.ok) {{ err.textContent = r.error || 'Не получилось проверить. Попробуйте ещё раз.'; return; }}
+        show(r);
+      }})
+      .catch(function () {{ btn.disabled = false; btn.textContent = 'Проверить КБМ'; err.textContent = 'Нет связи с сервером. Попробуйте ещё раз.'; }});
+  }});
+  function show(r) {{
+    var val = $('kbmVal'), badge = $('kbmBadge'), text = $('kbmText'), act = $('kbmActions');
+    var leadT = $('kbmLeadTitle'), leadP = $('kbmLeadText');
+    form.style.display = 'none'; res.classList.add('is-on');
+    act.innerHTML = '';
+    if (!r.found) {{
+      lastFactor = null;
+      val.textContent = 'Не нашли';
+      badge.className = 'kbm-badge kbm-badge--warn'; badge.textContent = 'Нет данных в базе РСА';
+      text.textContent = 'Проверьте ФИО и номер прав — точно как в удостоверении. Если права меняли, попробуйте старые. Или оставьте телефон, проверим сами.';
+      leadT.textContent = 'Проверим КБМ за вас'; leadP.textContent = 'Оставьте телефон: проверим по старым правам и прошлым полисам.';
+      return;
+    }}
+    lastFactor = r.factor;
+    val.textContent = 'КБМ ' + String(r.factor).replace('.', ',');
+    if (r.kind === 'discount') {{
+      badge.className = 'kbm-badge kbm-badge--good'; badge.textContent = 'Скидка ' + r.discount + '%';
+      text.textContent = 'Отлично: скидка за безаварийность на месте. Посчитайте ОСАГО — цена в калькуляторе уже учтёт её.';
+      act.innerHTML = '<a class="btn btn--accent btn--lg" href="/osago/#policy" data-goal="kbm_to_osago">Посчитать ОСАГО со скидкой</a>';
+      leadT.textContent = 'Хотите, посчитаем за вас?'; leadP.textContent = 'Оставьте телефон: сравним цены во всех страховых и пришлём лучшую.';
+    }} else if (r.kind === 'neutral') {{
+      badge.className = 'kbm-badge kbm-badge--warn'; badge.textContent = 'Скидки пока нет';
+      text.textContent = 'Каждый год без аварий снижает КБМ. Если вы водите дольше, чем говорит база, проверим и вернём скидку.';
+      act.innerHTML = '<a class="btn btn--ghost btn--lg" href="/osago/#policy" data-goal="kbm_to_osago">Посчитать ОСАГО</a>';
+    }} else if (r.kind === 'base') {{
+      badge.className = 'kbm-badge kbm-badge--warn'; badge.textContent = 'Стартовый класс, как у новичка';
+      text.textContent = 'Если вы водите давно без аварий, скорее всего, база не связала вас с прошлыми полисами: права меняли, полис был «без ограничений» или в нём ошибка. Скидку можно вернуть, и ОСАГО станет дешевле.';
+      act.innerHTML = '<a class="btn btn--ghost btn--lg" href="/osago/#policy" data-goal="kbm_to_osago">Всё равно посчитать ОСАГО</a>';
+    }} else {{
+      badge.className = 'kbm-badge kbm-badge--bad'; badge.textContent = 'Повышенный КБМ';
+      text.textContent = 'Так бывает после аварий по вашей вине. Если аварий не было, это ошибка в базе, и её можно исправить.';
+      act.innerHTML = '<a class="btn btn--ghost btn--lg" href="/osago/#policy" data-goal="kbm_to_osago">Посчитать ОСАГО</a>';
+    }}
+    goal('kbm_result_' + (r.kind || 'none'));
+  }}
+  $('leadForm').addEventListener('submit', function (e) {{
+    e.preventDefault();
+    var f = e.target, err = $('leadErr'), btn = $('leadBtn');
+    err.textContent = '';
+    if (!f.agree.checked) {{ err.textContent = 'Отметьте согласие.'; return; }}
+    btn.disabled = true; btn.textContent = 'Отправляем…';
+    post('lead', {{ name: f.name.value, phone: f.phone.value, factor: lastFactor, want: lastFactor !== null && lastFactor < 1 ? 'calc' : 'restore', src: src }})
+      .then(function (r) {{
+        btn.disabled = false; btn.textContent = 'Оставить заявку';
+        if (!r.ok) {{ err.textContent = r.error || 'Не получилось отправить.'; return; }}
+        $('kbmLeadBox').innerHTML = '<h3>Спасибо! Заявка у нас</h3><p>Свяжемся с вами в течение дня. Если удобнее, напишите сами в <a class="link js-manager js-manager-always" href="https://t.me/agentstrah">Telegram</a>.</p>';
+        goal('kbm_lead_sent');
+      }})
+      .catch(function () {{ btn.disabled = false; btn.textContent = 'Оставить заявку'; err.textContent = 'Нет связи с сервером. Попробуйте ещё раз.'; }});
+  }});
+  $('kbmAgain').addEventListener('click', function () {{
+    res.classList.remove('is-on'); form.style.display = ''; form.license.value = ''; form.fio.focus();
+  }});
+}})();
+</script>
+</body>
+</html>
+'''
+
 for p in PAGES:
     d = os.path.join(root, p['slug'])
     os.makedirs(d, exist_ok=True)
@@ -505,3 +775,7 @@ for r in RESULT:
     os.makedirs(d, exist_ok=True)
     open(os.path.join(d, 'index.html'), 'w', encoding='utf-8').write(result_page(r))
     print('wrote', r['slug'])
+
+os.makedirs(os.path.join(root, 'kbm'), exist_ok=True)
+open(os.path.join(root, 'kbm', 'index.html'), 'w', encoding='utf-8').write(kbm_page(KBM))
+print('wrote kbm')

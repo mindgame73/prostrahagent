@@ -1,0 +1,307 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Проверка КБМ онлайн бесплатно по базе РСА | ПроСтрахАгент</title>
+  <meta name="description" content="Проверьте КБМ (скидку за безаварийность) по базе РСА онлайн и бесплатно: ФИО, дата рождения и номер прав. Узнайте, сохранилась ли скидка, и рассчитайте ОСАГО с ней.">
+  <link rel="canonical" href="https://prostrahagent.ru/kbm/">
+  <meta name="theme-color" content="#0B1736">
+  <meta property="og:title" content="Проверка КБМ онлайн: узнайте свою скидку на ОСАГО">
+  <meta property="og:description" content="Проверьте КБМ (скидку за безаварийность) по базе РСА онлайн и бесплатно: ФИО, дата рождения и номер прав. Узнайте, сохранилась ли скидка, и рассчитайте ОСАГО с ней.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://prostrahagent.ru/kbm/">
+  <meta property="og:site_name" content="ПроСтрахАгент">
+  <meta property="og:locale" content="ru_RU">
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Главная", "item": "https://prostrahagent.ru/"}, {"@type": "ListItem", "position": 2, "name": "Проверка КБМ", "item": "https://prostrahagent.ru/kbm/"}]}</script>
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Что такое КБМ?", "acceptedAnswer": {"@type": "Answer", "text": "Коэффициент бонус-малус — множитель в цене ОСАГО за аварийность. Чем дольше вы ездите без аварий по своей вине, тем он ниже и тем дешевле полис. После аварии КБМ растёт."}}, {"@type": "Question", "name": "Почему у меня КБМ 1,17, хотя я езжу без аварий?", "acceptedAnswer": {"@type": "Answer", "text": "Чаще всего база не связала вас с прошлыми полисами: вы меняли права и в новом полисе не указали старые, полис был «без ограничений» (тогда скидка учитывается у собственника), или в прошлом полисе была ошибка в ФИО или номере прав."}}, {"@type": "Question", "name": "Как восстановить КБМ?", "acceptedAnswer": {"@type": "Answer", "text": "Нужно обратиться в страховую с заявлением о пересчёте и подтвердить прошлые полисы. Страховая обязана исправить КБМ в базе. Оставьте заявку — подскажем, куда и что написать, и посчитаем ОСАГО уже с правильной скидкой."}}, {"@type": "Question", "name": "Какие данные нужны для проверки?", "acceptedAnswer": {"@type": "Answer", "text": "ФИО, дата рождения, серия и номер водительского удостоверения — как в правах. Если права меняли, проверьте и по старым."}}, {"@type": "Question", "name": "Как часто обновляется КБМ?", "acceptedAnswer": {"@type": "Answer", "text": "Класс пересчитывается раз в год, на 1 апреля, по данным о страховых случаях за прошлый год. В течение года при оформлении нового полиса применяется текущий класс."}}, {"@type": "Question", "name": "Вы сохраняете мои данные?", "acceptedAnswer": {"@type": "Answer", "text": "Нет. Данные передаются только для проверки в базе РСА через партнёрскую платформу и не сохраняются. Подробнее — в политике обработки персональных данных."}}]}</script>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="/fonts/manrope-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/fonts/unbounded-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/styles.css?v=17">
+  <style>
+    .kbm-card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); box-shadow: var(--shadow); padding: 28px; max-width: 640px; margin-top: 28px; }
+    .kbm-form { display: grid; gap: 16px; }
+    .kbm-form label { display: grid; gap: 6px; font-weight: 700; font-size: 15px; }
+    .kbm-form label span { font-weight: 500; color: var(--muted); font-size: 13px; }
+    .kbm-form input[type=text], .kbm-form input[type=tel] { font: inherit; font-size: 17px; padding: 14px 16px; border: 1px solid var(--line); border-radius: var(--radius-sm); background: var(--bg); color: var(--ink); width: 100%; }
+    .kbm-form input:focus { outline: none; border-color: var(--blue); box-shadow: 0 0 0 4px rgba(47, 91, 255, .15); background: #fff; }
+    .kbm-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    @media (max-width: 560px) { .kbm-row { grid-template-columns: 1fr; } .kbm-card { padding: 20px; } }
+    .kbm-consent { display: flex !important; grid-template-columns: none; gap: 10px !important; align-items: flex-start; font-weight: 500 !important; font-size: 13px !important; color: var(--muted); }
+    .kbm-consent input { margin-top: 3px; width: 18px; height: 18px; flex: none; }
+    .kbm-hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+    .kbm-err { color: #C62828; font-weight: 600; font-size: 14px; min-height: 1em; }
+    .kbm-res { display: none; }
+    .kbm-res.is-on { display: block; }
+    .kbm-big { font-family: var(--font-head); font-weight: 600; font-size: clamp(40px, 7vw, 64px); letter-spacing: -.03em; line-height: 1; }
+    .kbm-badge { display: inline-block; padding: 6px 14px; border-radius: 999px; font-weight: 800; font-size: 14px; margin: 10px 0 14px; }
+    .kbm-badge--good { background: var(--accent); color: var(--ink); }
+    .kbm-badge--warn { background: #FFE3A3; color: #6A4A00; }
+    .kbm-badge--bad { background: #FFD4D4; color: #8A1C1C; }
+    .kbm-res p { color: var(--muted); margin-bottom: 18px; }
+    .kbm-actions { display: flex; flex-wrap: wrap; gap: 12px; }
+    .kbm-lead { margin-top: 22px; padding-top: 22px; border-top: 1px solid var(--line); }
+    .kbm-lead h3 { font-family: var(--font-head); font-weight: 600; font-size: 20px; margin-bottom: 6px; }
+    .kbm-again { background: none; border: 0; color: var(--blue); font: inherit; font-weight: 700; cursor: pointer; padding: 0; margin-top: 16px; }
+    .kbm-hint { margin: 14px 0 0; font-weight: 600; }
+    .btn[disabled] { opacity: .6; pointer-events: none; }
+  </style>
+</head>
+<body class="product-page">
+
+<header class="header" id="top">
+  <div class="container header__inner">
+    <a href="/" class="logo" aria-label="ПроСтрахАгент — на главную">
+      <svg class="logo__mark" viewBox="0 0 40 40" aria-hidden="true">
+        <rect width="40" height="40" rx="12" fill="#2F5BFF"/>
+        <path d="M20 8.5 29.5 12v7.6c0 6.1-4 10.6-9.5 12.4-5.5-1.8-9.5-6.3-9.5-12.4V12L20 8.5Z" fill="#fff"/>
+        <path d="m15.6 20.2 3.2 3.2 6-6.2" fill="none" stroke="#2F5BFF" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <span class="logo__text"><b>Про</b>СтрахАгент</span>
+    </a>
+
+    <nav class="nav" aria-label="Основная навигация">
+      <a href="#check">Проверить КБМ</a>
+      <a href="#faq">Вопросы</a>
+      <a href="/osago/">Рассчитать ОСАГО</a>
+    </nav>
+
+    <div class="header__actions">
+      <a class="btn btn--tg btn--sm js-tg" href="https://t.me/prostrahagent" data-goal="tg_header">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21.5 4.3 18.4 19c-.2 1-.8 1.3-1.7.8l-4.6-3.4-2.2 2.1c-.3.3-.5.5-1 .5l.3-4.7 8.6-7.8c.4-.3-.1-.5-.6-.2L6.6 13 2 11.6c-1-.3-1-1 .2-1.5L20.1 3.2c.8-.3 1.6.2 1.4 1.1Z" fill="currentColor"/></svg>
+        <span>Наш Telegram</span>
+      </a>
+    </div>
+  </div>
+</header>
+
+<main>
+
+<section class="page-hero" id="check">
+  <div class="container">
+    <nav class="crumbs" aria-label="Навигация"><a href="/">Главная</a><span aria-hidden="true">›</span><span>Проверка КБМ</span></nav>
+    <h1 class="page-hero__title">Проверка КБМ онлайн: узнайте свою скидку на ОСАГО</h1>
+    <p class="page-hero__lead">КБМ — это скидка за езду без аварий. Она может доходить до 54%, а может «потеряться» после замены прав или ошибки в базе. Проверьте за минуту.</p>
+    <ul class="chips"><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12.5 4.2 4.2L19 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Бесплатно</li><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12.5 4.2 4.2L19 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>По базе РСА</li><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12.5 4.2 4.2L19 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Данные не храним</li></ul>
+
+    <div class="kbm-card">
+      <form class="kbm-form" id="kbmForm" novalidate>
+        <label>Фамилия, имя и отчество<span>Как в водительском удостоверении</span>
+          <input type="text" name="fio" autocomplete="name" placeholder="Иванов Иван Иванович" required></label>
+        <div class="kbm-row">
+          <label>Дата рождения
+            <input type="text" name="birth" inputmode="numeric" autocomplete="bday" placeholder="31.05.1986" maxlength="10" required></label>
+          <label>Серия и номер прав<span>10 знаков, пункт 5</span>
+            <input type="text" name="license" autocomplete="off" placeholder="99 12 345678" maxlength="14" required></label>
+        </div>
+        <div class="kbm-hp" aria-hidden="true"><label>Сайт<input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
+        <label class="kbm-consent"><input type="checkbox" name="agree" required> <span>Согласен на обработку персональных данных для проверки КБМ: они передаются ООО «МК Групп» (ИНН 7805730637) для запроса в базу РСА и не сохраняются. <a class="link" href="/privacy.html#kbm" target="_blank">Политика</a></span></label>
+        <div class="kbm-err" id="kbmErr" role="alert"></div>
+        <button class="btn btn--accent btn--lg" type="submit" id="kbmBtn" data-goal="kbm_check">Проверить КБМ</button>
+      </form>
+
+      <div class="kbm-res" id="kbmRes" aria-live="polite">
+        <div class="kbm-big" id="kbmVal">—</div>
+        <div class="kbm-badge" id="kbmBadge"></div>
+        <p id="kbmText"></p>
+        <div class="kbm-actions" id="kbmActions"></div>
+        <div class="kbm-lead" id="kbmLeadBox">
+          <h3 id="kbmLeadTitle">Вернём скидку бесплатно</h3>
+          <p id="kbmLeadText">Оставьте телефон: подскажем, как восстановить КБМ, и посчитаем ОСАГО уже с правильной скидкой.</p>
+          <form class="kbm-form" id="leadForm" novalidate>
+            <div class="kbm-row">
+              <label>Имя<input type="text" name="name" autocomplete="given-name" placeholder="Иван"></label>
+              <label>Телефон<input type="tel" name="phone" autocomplete="tel" placeholder="+7 900 000-00-00" required></label>
+            </div>
+            <label class="kbm-consent"><input type="checkbox" name="agree" required> <span>Согласен, чтобы со мной связались по этой заявке. <a class="link" href="/privacy.html#kbm" target="_blank">Политика</a></span></label>
+            <div class="kbm-err" id="leadErr" role="alert"></div>
+            <button class="btn btn--accent btn--lg" type="submit" id="leadBtn" data-goal="kbm_lead">Оставить заявку</button>
+          </form>
+        </div>
+        <button class="kbm-again" type="button" id="kbmAgain">↺ Проверить другого водителя</button>
+      </div>
+    </div>
+    <p class="widget-note">Проверка идёт через партнёрскую платформу ООО «МК Групп» по базе Российского союза автостраховщиков. Мы не храним введённые данные.</p>
+  </div>
+</section>
+
+<section class="section section--tight-top">
+  <div class="container">
+    <div class="section__head section__head--left"><h2 class="h2">Что важно знать о КБМ</h2></div>
+    <div class="facts"><article class="fact"><h3>От 0,46 до 3,92</h3><p>Таков диапазон КБМ. Меньше 1 — скидка, больше 1 — повышение цены. Каждый год без аварий снижает коэффициент.</p></article><article class="fact"><h3>1,17 — стартовый класс</h3><p>Его получают новые водители. Если вы ездите давно, а видите 1,17, скорее всего, скидка не подтянулась из базы.</p></article><article class="fact"><h3>Скидка не «сгорает» при смене страховой</h3><p>КБМ хранится в общей базе РСА и привязан к водителю, а не к компании.</p></article><article class="fact"><h3>Скидку можно вернуть</h3><p>Если КБМ посчитан неверно, страховая обязана исправить его по обращению. Мы поможем пройти это бесплатно.</p></article></div>
+  </div>
+</section>
+
+<section class="section section--tight-top" id="faq">
+  <div class="container faq">
+    <div class="section__head section__head--left">
+      <span class="eyebrow">Частые вопросы</span>
+      <h2 class="h2">Коротко о главном</h2>
+    </div>
+    <div class="faq__list">
+      <details class="faq__item" open>
+        <summary>Что такое КБМ?</summary>
+        <p>Коэффициент бонус-малус — множитель в цене ОСАГО за аварийность. Чем дольше вы ездите без аварий по своей вине, тем он ниже и тем дешевле полис. После аварии КБМ растёт.</p>
+      </details>
+      <details class="faq__item">
+        <summary>Почему у меня КБМ 1,17, хотя я езжу без аварий?</summary>
+        <p>Чаще всего база не связала вас с прошлыми полисами: вы меняли права и в новом полисе не указали старые, полис был «без ограничений» (тогда скидка учитывается у собственника), или в прошлом полисе была ошибка в ФИО или номере прав.</p>
+      </details>
+      <details class="faq__item">
+        <summary>Как восстановить КБМ?</summary>
+        <p>Нужно обратиться в страховую с заявлением о пересчёте и подтвердить прошлые полисы. Страховая обязана исправить КБМ в базе. Оставьте заявку — подскажем, куда и что написать, и посчитаем ОСАГО уже с правильной скидкой.</p>
+      </details>
+      <details class="faq__item">
+        <summary>Какие данные нужны для проверки?</summary>
+        <p>ФИО, дата рождения, серия и номер водительского удостоверения — как в правах. Если права меняли, проверьте и по старым.</p>
+      </details>
+      <details class="faq__item">
+        <summary>Как часто обновляется КБМ?</summary>
+        <p>Класс пересчитывается раз в год, на 1 апреля, по данным о страховых случаях за прошлый год. В течение года при оформлении нового полиса применяется текущий класс.</p>
+      </details>
+      <details class="faq__item">
+        <summary>Вы сохраняете мои данные?</summary>
+        <p>Нет. Данные передаются только для проверки в базе РСА через партнёрскую платформу и не сохраняются. Подробнее — в политике обработки персональных данных.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<section class="section section--tight-top">
+  <div class="container">
+    <h2 class="h3-title">Рассчитать полис</h2>
+    <div class="ptabs ptabs--left"><a class="ptab" href="/osago/">ОСАГО</a><a class="ptab" href="/ipoteka/">Страхование ипотеки</a><a class="ptab" href="/travel/">Путешествия</a><a class="ptab" href="/kasko/">Мини-КАСКО</a><a class="ptab" href="/#kvartira">Квартира и дом</a><a class="ptab" href="/#antiklesh">Антиклещ</a><a class="ptab" href="/kasko/">КАСКО</a><a class="ptab" href="/#titul">Титул</a></div>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="container footer__inner">
+    <div class="footer__brand">
+      <a href="/" class="logo logo--light">
+        <svg class="logo__mark" viewBox="0 0 40 40" aria-hidden="true">
+          <rect width="40" height="40" rx="12" fill="#2F5BFF"/>
+          <path d="M20 8.5 29.5 12v7.6c0 6.1-4 10.6-9.5 12.4-5.5-1.8-9.5-6.3-9.5-12.4V12L20 8.5Z" fill="#fff"/>
+          <path d="m15.6 20.2 3.2 3.2 6-6.2" fill="none" stroke="#2F5BFF" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span class="logo__text"><b>Про</b>СтрахАгент</span>
+      </a>
+      <a class="footer__tg js-tg js-tg-handle" href="https://t.me/prostrahagent" data-goal="tg_footer">@prostrahagent</a>
+    </div>
+    <nav class="footer__products" aria-label="Виды страхования">
+      <span>Страхование:</span>
+      <a href="/osago/">ОСАГО</a>
+      <a href="/ipoteka/">Ипотека</a>
+      <a href="/travel/">Путешествия</a>
+      <a href="/#policy">Все виды</a>
+      <span class="footer__sep">·</span>
+      <a href="/agent/">Стать страховым агентом</a>
+    </nav>
+    <p class="footer__legal">
+      © <span id="year">2026</span> ПроСтрахАгент — помогаем начать работу страховым агентом и оформить страховку онлайн.
+      ИП Ядроч Сергей Вячеславович, ИНН 730294233902, ОГРНИП 326730000070102, Ульяновская обл., г. Димитровград, e-mail: <a href="mailto:surii73@yandex.ru">surii73@yandex.ru</a>.<br>
+      Вознаграждения указаны ориентировочно и не являются гарантией дохода. Актуальные ставки и условия — в личном кабинете агента. Информация на сайте не является публичной офертой.
+    </p>
+    <nav class="footer__links" aria-label="Документы">
+      <a href="/privacy.html">Политика обработки персональных данных</a>
+      <a href="/terms.html">Пользовательское соглашение</a>
+      <a href="/consent.html" class="js-consent-doc" hidden>Согласие на обработку данных</a>
+      <a href="#" class="js-cookie-settings" hidden>Настройки cookie</a>
+    </nav>
+  </div>
+</footer>
+
+<script src="/config.js?v=14"></script>
+<script src="/consent.js?v=3"></script>
+<script src="/script.js?v=18"></script>
+<script>
+(function () {
+  var API = 'https://functions.yandexcloud.net/d4e3e3v52nob2rn4k038';
+  var src = (new URLSearchParams(location.search).get('utm_source') || new URLSearchParams(location.search).get('src') || 'site').slice(0, 20);
+  var $ = function (id) { return document.getElementById(id); };
+  var form = $('kbmForm'), res = $('kbmRes'), lastFactor = null;
+  var birth = form.birth;
+  birth.addEventListener('input', function () {
+    var d = birth.value.replace(/\D/g, '').slice(0, 8), o = d.slice(0, 2);
+    if (d.length > 2) o += '.' + d.slice(2, 4);
+    if (d.length > 4) o += '.' + d.slice(4);
+    birth.value = o;
+  });
+  function post(api, body) {
+    return fetch(API + '?api=' + api, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) })
+      .then(function (r) { return r.json().catch(function () { return { ok: false, error: 'Ошибка сервера' }; }); });
+  }
+  function goal(g) { try { if (window.PS && PS.goal) PS.goal(g); } catch (e) {} }
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var err = $('kbmErr'), btn = $('kbmBtn');
+    err.textContent = '';
+    if (!form.agree.checked) { err.textContent = 'Отметьте согласие на обработку данных.'; return; }
+    btn.disabled = true; btn.textContent = 'Проверяем в базе РСА…';
+    post('kbm', { fio: form.fio.value, birth: form.birth.value, license: form.license.value, website: form.website.value, src: src })
+      .then(function (r) {
+        btn.disabled = false; btn.textContent = 'Проверить КБМ';
+        if (!r.ok) { err.textContent = r.error || 'Не получилось проверить. Попробуйте ещё раз.'; return; }
+        show(r);
+      })
+      .catch(function () { btn.disabled = false; btn.textContent = 'Проверить КБМ'; err.textContent = 'Нет связи с сервером. Попробуйте ещё раз.'; });
+  });
+  function show(r) {
+    var val = $('kbmVal'), badge = $('kbmBadge'), text = $('kbmText'), act = $('kbmActions');
+    var leadT = $('kbmLeadTitle'), leadP = $('kbmLeadText');
+    form.style.display = 'none'; res.classList.add('is-on');
+    act.innerHTML = '';
+    if (!r.found) {
+      lastFactor = null;
+      val.textContent = 'Не нашли';
+      badge.className = 'kbm-badge kbm-badge--warn'; badge.textContent = 'Нет данных в базе РСА';
+      text.textContent = 'Проверьте ФИО и номер прав — точно как в удостоверении. Если права меняли, попробуйте старые. Или оставьте телефон, проверим сами.';
+      leadT.textContent = 'Проверим КБМ за вас'; leadP.textContent = 'Оставьте телефон: проверим по старым правам и прошлым полисам.';
+      return;
+    }
+    lastFactor = r.factor;
+    val.textContent = 'КБМ ' + String(r.factor).replace('.', ',');
+    if (r.kind === 'discount') {
+      badge.className = 'kbm-badge kbm-badge--good'; badge.textContent = 'Скидка ' + r.discount + '%';
+      text.textContent = 'Отлично: скидка за безаварийность на месте. Посчитайте ОСАГО — цена в калькуляторе уже учтёт её.';
+      act.innerHTML = '<a class="btn btn--accent btn--lg" href="/osago/#policy" data-goal="kbm_to_osago">Посчитать ОСАГО со скидкой</a>';
+      leadT.textContent = 'Хотите, посчитаем за вас?'; leadP.textContent = 'Оставьте телефон: сравним цены во всех страховых и пришлём лучшую.';
+    } else if (r.kind === 'neutral') {
+      badge.className = 'kbm-badge kbm-badge--warn'; badge.textContent = 'Скидки пока нет';
+      text.textContent = 'Каждый год без аварий снижает КБМ. Если вы водите дольше, чем говорит база, проверим и вернём скидку.';
+      act.innerHTML = '<a class="btn btn--ghost btn--lg" href="/osago/#policy" data-goal="kbm_to_osago">Посчитать ОСАГО</a>';
+    } else if (r.kind === 'base') {
+      badge.className = 'kbm-badge kbm-badge--warn'; badge.textContent = 'Стартовый класс, как у новичка';
+      text.textContent = 'Если вы водите давно без аварий, скорее всего, база не связала вас с прошлыми полисами: права меняли, полис был «без ограничений» или в нём ошибка. Скидку можно вернуть, и ОСАГО станет дешевле.';
+      act.innerHTML = '<a class="btn btn--ghost btn--lg" href="/osago/#policy" data-goal="kbm_to_osago">Всё равно посчитать ОСАГО</a>';
+    } else {
+      badge.className = 'kbm-badge kbm-badge--bad'; badge.textContent = 'Повышенный КБМ';
+      text.textContent = 'Так бывает после аварий по вашей вине. Если аварий не было, это ошибка в базе, и её можно исправить.';
+      act.innerHTML = '<a class="btn btn--ghost btn--lg" href="/osago/#policy" data-goal="kbm_to_osago">Посчитать ОСАГО</a>';
+    }
+    goal('kbm_result_' + (r.kind || 'none'));
+  }
+  $('leadForm').addEventListener('submit', function (e) {
+    e.preventDefault();
+    var f = e.target, err = $('leadErr'), btn = $('leadBtn');
+    err.textContent = '';
+    if (!f.agree.checked) { err.textContent = 'Отметьте согласие.'; return; }
+    btn.disabled = true; btn.textContent = 'Отправляем…';
+    post('lead', { name: f.name.value, phone: f.phone.value, factor: lastFactor, want: lastFactor !== null && lastFactor < 1 ? 'calc' : 'restore', src: src })
+      .then(function (r) {
+        btn.disabled = false; btn.textContent = 'Оставить заявку';
+        if (!r.ok) { err.textContent = r.error || 'Не получилось отправить.'; return; }
+        $('kbmLeadBox').innerHTML = '<h3>Спасибо! Заявка у нас</h3><p>Свяжемся с вами в течение дня. Если удобнее, напишите сами в <a class="link js-manager js-manager-always" href="https://t.me/agentstrah">Telegram</a>.</p>';
+        goal('kbm_lead_sent');
+      })
+      .catch(function () { btn.disabled = false; btn.textContent = 'Оставить заявку'; err.textContent = 'Нет связи с сервером. Попробуйте ещё раз.'; });
+  });
+  $('kbmAgain').addEventListener('click', function () {
+    res.classList.remove('is-on'); form.style.display = ''; form.license.value = ''; form.fio.focus();
+  });
+})();
+</script>
+</body>
+</html>
