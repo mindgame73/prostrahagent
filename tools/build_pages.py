@@ -600,7 +600,7 @@ def kbm_page(k):
           <label>Дата рождения
             <input type="text" name="birth" inputmode="numeric" autocomplete="bday" placeholder="31.05.1986" maxlength="10" required></label>
           <label>Серия и номер прав<span>10 знаков, пункт 5</span>
-            <input type="text" name="license" autocomplete="off" placeholder="99 12 345678" maxlength="14" required></label>
+            <input type="text" name="license" autocomplete="off" placeholder="99 12 345678" maxlength="12" autocapitalize="characters" required></label>
         </div>
         <div class="kbm-hp" aria-hidden="true"><label>Сайт<input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
         <label class="kbm-consent"><input type="checkbox" name="agree" required> <span>Согласен на обработку персональных данных для проверки КБМ: они передаются ООО «МК Групп» (ИНН 7805730637) для запроса в базу РСА и не сохраняются. <a class="link" href="/privacy.html#kbm" target="_blank">Политика</a></span></label>
@@ -677,6 +677,14 @@ def kbm_page(k):
     if (d.length > 2) o += '.' + d.slice(2, 4);
     if (d.length > 4) o += '.' + d.slice(4);
     birth.value = o;
+  }});
+  // Номер прав: сами ставим пробелы «99 12 345678» (серия бывает с буквами у старых прав)
+  var lic = form.license;
+  lic.addEventListener('input', function () {{
+    var v = lic.value.toUpperCase().replace(/[^0-9А-ЯЁ]/g, '').slice(0, 10), o = v.slice(0, 2);
+    if (v.length > 2) o += ' ' + v.slice(2, 4);
+    if (v.length > 4) o += ' ' + v.slice(4);
+    lic.value = o;
   }});
   function post(api, body) {{
     return fetch(API + '?api=' + api, {{ method: 'POST', headers: {{ 'Content-Type': 'application/json' }}, body: JSON.stringify(body) }})
