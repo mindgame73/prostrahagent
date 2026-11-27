@@ -331,7 +331,7 @@ def agent_page(a):
       <a class="btn btn--accent btn--lg js-tg" href="https://t.me/prostrahagent" data-goal="tg_agent_hero">{TG} Начать в Telegram</a>
       <a class="btn btn--ghost btn--lg" href="/#calc">Посчитать доход</a>
     </div>
-    <p class="page-hero__note"><a class="link js-manager" href="https://t.me/prostrahagent" data-goal="curator_agent_hero" hidden>Готовы сразу? Напишите куратору</a> <span class="sep">·</span> Нет Telegram? <a class="link" href="https://max.ru/join/tF0KNwrT1PTsww7vG0NTL_VBi3YXHXQv3bgCNp18fi8" target="_blank" rel="noopener" data-goal="max_agent_hero"><img class="max-ico" src="/img/max.png" alt="" width="18" height="18">Канал в Max</a></p>
+    <p class="page-hero__note"><a class="link js-manager" href="https://t.me/prostrahagent" data-goal="curator_agent_hero" hidden>Готовы сразу? Напишите куратору</a> <span class="sep">·</span> Нет Telegram? <a class="link" href="https://max.ru/channel_prostrah" target="_blank" rel="noopener" data-goal="max_agent_hero"><img class="max-ico" src="/img/max.png" alt="" width="18" height="18">Канал в Max</a></p>
   </div>
 </section>
 

@@ -681,3 +681,11 @@ a.ptab { display: inline-block; }
 .cta-alt { margin-top: 14px; text-align: center; font-size: 15px; }
 .page-hero__note { margin-top: 14px; font-size: 14px; color: var(--muted); }
 .page-hero__note .sep { margin: 0 6px; }
+
+/* Max — кнопка в шапке и ссылка в подвале */
+.btn--max { background: #fff; color: var(--ink); border: 1px solid var(--line); }
+.btn--max:hover { border-color: #8B5CF6; box-shadow: 0 10px 24px -8px rgba(139, 92, 246, .45); }
+.header__actions .btn--max .max-ico { margin-right: 0; }
+.header__actions .btn--max span { margin-left: 6px; }
+.footer__social { display: flex; align-items: center; flex-wrap: wrap; gap: 8px 22px; }
+.footer__max { display: inline-flex; align-items: center; }
